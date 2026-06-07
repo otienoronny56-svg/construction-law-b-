@@ -1,0 +1,3382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EACQ 3214 & 3114: Construction Law Study Dashboard</title>
+    <meta name="description" content="Ultimate Interactive Study Guide and Exam Prep Portal for Construction Law B (Quantity Surveying & Construction Management). Featuring complete notes, case law library, flashcards, mock exam, and quick-ref.">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Light Theme Variables */
+            --bg-color: #f8fafc;
+            --text-color: #0f172a;
+            --text-muted: #475569;
+            --card-bg: #ffffff;
+            --card-border: #e2e8f0;
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --primary-light: #e0e7ff;
+            --secondary: #0ea5e9;
+            --secondary-light: #e0f2fe;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #10b981;
+            --success-light: #d1fae5;
+            --error: #ef4444;
+            --error-light: #fee2e2;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --radius: 16px;
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            /* Dark Theme Variables */
+            --bg-color: #0b0f19;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --card-bg: #151f32;
+            --card-border: #223147;
+            --primary: #818cf8;
+            --primary-hover: #6366f1;
+            --primary-light: #1e1b4b;
+            --secondary: #38bdf8;
+            --secondary-light: #0c4a6e;
+            --accent: #fbbf24;
+            --accent-light: #78350f;
+            --success: #34d399;
+            --success-light: #064e3b;
+            --error: #f87171;
+            --error-light: #7f1d1d;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: var(--transition);
+            padding-bottom: 60px;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header UI */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            border-bottom: 1px solid var(--card-border);
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .header-title-area h1 {
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 4px;
+        }
+
+        .header-title-area p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Button Premium Styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid var(--card-border);
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            color: #ffffff;
+            border-color: var(--primary-hover);
+        }
+
+        .theme-toggle {
+            width: 44px;
+            height: 44px;
+            padding: 0;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        /* Dashboard Tabs Navigation */
+        .nav-tabs {
+            display: flex;
+            gap: 8px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 6px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            overflow-x: auto;
+            box-shadow: var(--shadow);
+            scrollbar-width: none; /* Hide scrollbar for Firefox */
+        }
+        .nav-tabs::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome/Safari */
+        }
+
+        .tab-btn {
+            flex: 1;
+            min-width: 140px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 16px;
+            border: none;
+            background: none;
+            color: var(--text-muted);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+            background-color: var(--primary-light);
+        }
+
+        /* Search Section */
+        .search-container {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 16px 20px 16px 52px;
+            border-radius: 14px;
+            border: 1px solid var(--card-border);
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            fill: var(--text-muted);
+            width: 20px;
+            height: 20px;
+            pointer-events: none;
+        }
+
+        /* Filters in Case Law Tab */
+        .filter-container {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        .filter-btn {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .filter-btn.active {
+            background-color: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+        }
+
+        /* Dashboard Content Containers */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Study Guide Styling */
+        .guide-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 24px;
+        }
+
+        @media (max-width: 950px) {
+            .guide-grid {
+                grid-template-columns: 1fr;
+            }
+            .sidebar-nav {
+                display: none; /* Hide sidebar nav on mobile, users can scroll or search */
+            }
+        }
+
+        .sidebar-nav {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+            padding: 16px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            box-shadow: var(--shadow);
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        .sidebar-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .sidebar-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 10px;
+            border-radius: 8px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .sidebar-link:hover {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .sidebar-link.active {
+            background-color: var(--primary-light);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .content-area {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* Section Cards */
+        .section-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+            padding: 28px;
+            box-shadow: var(--shadow);
+            scroll-margin-top: 20px;
+            transition: var(--transition);
+        }
+
+        .section-card:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 14px;
+        }
+
+        .section-title-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            flex-grow: 1;
+        }
+
+        .section-badge {
+            align-self: flex-start;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 4px;
+        }
+
+        .badge-style { background-color: var(--primary-light); color: var(--primary); }
+
+        .section-title {
+            font-size: 1.4rem;
+            color: var(--text-color);
+        }
+
+        .section-card-body {
+            font-size: 1.02rem;
+            color: var(--text-color);
+        }
+
+        .section-card-body p {
+            margin-bottom: 16px;
+        }
+
+        /* Plain English Breakouts */
+        .simple-english-box {
+            background: linear-gradient(135deg, var(--success-light), var(--bg-color));
+            border-left: 5px solid var(--success);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            box-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.02);
+        }
+
+        .simple-english-box h4 {
+            color: var(--success);
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .simple-english-box p {
+            font-size: 0.98rem;
+            color: var(--text-muted);
+            margin-bottom: 0;
+            line-height: 1.5;
+        }
+
+        /* Law Citation Badges */
+        .law-citation {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid transparent;
+            margin: 2px 0;
+        }
+
+        .law-citation:hover {
+            border-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        /* Bullet lists premium spacing */
+        .custom-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 16px 0;
+        }
+
+        .custom-list li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+
+        .custom-list li::before {
+            content: "•";
+            position: absolute;
+            left: 10px;
+            top: -2px;
+            color: var(--primary);
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .sub-list {
+            padding-left: 20px;
+            margin-top: 8px;
+            list-style: circle;
+        }
+
+        .sub-list li::before {
+            display: none;
+        }
+
+        .sub-list li {
+            padding-left: 0;
+            margin-bottom: 6px;
+        }
+
+        /* Info grids (like pros and cons) */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 24px 0;
+        }
+
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .comp-card {
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--card-border);
+            background-color: var(--bg-color);
+        }
+
+        .comp-card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pro-title { color: var(--success); }
+        .con-title { color: var(--error); }
+
+        .comp-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .comp-card li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .comp-card li::before {
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .comp-card.pro li::before {
+            content: "✓";
+            color: var(--success);
+        }
+
+        .comp-card.con li::before {
+            content: "✗";
+            color: var(--error);
+        }
+
+        /* ============================================
+           ENHANCED CASE LAW LIBRARY STYLES
+           ============================================ */
+        .case-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 28px;
+        }
+
+        /* Category color mapping via data attributes */
+        .case-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+            padding: 0;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .case-card:hover {
+            box-shadow: 0 20px 40px -8px rgb(0 0 0 / 0.18);
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .case-card-top-bar {
+            height: 6px;
+            width: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        .case-card[data-cat="Lifting the Corporate Veil"] .case-card-top-bar { background: linear-gradient(90deg, #f59e0b, #ef4444); }
+        .case-card[data-cat="Separate Legal Personality"] .case-card-top-bar { background: linear-gradient(90deg, #4f46e5, #818cf8); }
+        .case-card[data-cat="Formation & Registration"] .case-card-top-bar { background: linear-gradient(90deg, #10b981, #0ea5e9); }
+        .case-card[data-cat="Articles of Association"] .case-card-top-bar { background: linear-gradient(90deg, #8b5cf6, #d946ef); }
+        .case-card[data-cat="Memorandum & Object Clause"] .case-card-top-bar { background: linear-gradient(90deg, #f97316, #fbbf24); }
+        .case-card[data-cat="Alteration of Status & Contracts"] .case-card-top-bar { background: linear-gradient(90deg, #0ea5e9, #06b6d4); }
+        .case-card[data-cat="Indoor Management"] .case-card-top-bar { background: linear-gradient(90deg, #ec4899, #f43f5e); }
+
+        .case-card-inner {
+            padding: 24px 28px 28px;
+        }
+
+        .case-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .case-header-left {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex: 1;
+        }
+
+        .case-title-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .case-title {
+            font-size: 1.3rem;
+            color: var(--text-color);
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+        }
+
+        .case-title:hover {
+            color: var(--primary);
+        }
+
+        .must-know-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            color: #ffffff;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(239,68,68,0.35);
+            animation: badge-pulse 2.5s infinite alternate;
+        }
+        @keyframes badge-pulse {
+            from { box-shadow: 0 2px 8px rgba(239,68,68,0.3); }
+            to { box-shadow: 0 2px 14px rgba(239,68,68,0.55); }
+        }
+
+        .case-category-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 8px;
+            background-color: var(--primary-light);
+            color: var(--primary);
+        }
+        /* Category tag colours */
+        .case-card[data-cat="Lifting the Corporate Veil"] .case-category-tag { background: rgba(245,158,11,0.15); color: #b45309; }
+        .case-card[data-cat="Separate Legal Personality"] .case-category-tag { background: rgba(79,70,229,0.12); color: #4f46e5; }
+        .case-card[data-cat="Formation & Registration"] .case-category-tag { background: rgba(16,185,129,0.12); color: #059669; }
+        .case-card[data-cat="Articles of Association"] .case-category-tag { background: rgba(139,92,246,0.12); color: #7c3aed; }
+        .case-card[data-cat="Memorandum & Object Clause"] .case-category-tag { background: rgba(249,115,22,0.12); color: #c2410c; }
+        .case-card[data-cat="Alteration of Status & Contracts"] .case-category-tag { background: rgba(14,165,233,0.12); color: #0369a1; }
+        .case-card[data-cat="Indoor Management"] .case-category-tag { background: rgba(236,72,153,0.12); color: #be185d; }
+
+        .case-citation {
+            font-family: 'Courier New', monospace;
+            background-color: var(--bg-color);
+            color: var(--text-muted);
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            border: 1px solid var(--card-border);
+            align-self: flex-start;
+            white-space: nowrap;
+        }
+
+        /* Case content sections */
+        .case-sections {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .case-section-row {
+            display: grid;
+            grid-template-columns: 110px 1fr;
+            gap: 0 16px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--card-border);
+            align-items: start;
+        }
+        .case-section-row:last-of-type { border-bottom: none; }
+
+        /* Mobile: stack label on top of content */
+        @media (max-width: 600px) {
+            .case-section-row {
+                grid-template-columns: 1fr;
+                gap: 4px;
+                padding: 10px 0;
+            }
+            .case-label {
+                font-size: 0.72rem;
+                padding-top: 0;
+            }
+            .case-card-inner {
+                padding: 16px 16px 20px;
+            }
+            .case-title {
+                font-size: 1.05rem;
+            }
+            .case-section-value {
+                font-size: 0.9rem;
+                line-height: 1.55;
+            }
+            .case-takeaway-box {
+                font-size: 0.88rem;
+                padding: 12px 14px;
+            }
+            .case-exam-tip {
+                font-size: 0.82rem;
+                padding: 10px 12px;
+            }
+            .must-know-badge {
+                font-size: 0.65rem;
+                padding: 2px 8px;
+            }
+            .case-category-tag {
+                font-size: 0.72rem;
+                padding: 3px 8px;
+            }
+        }
+
+        .case-label {
+            font-weight: 700;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            padding-top: 2px;
+        }
+
+        .case-section-value {
+            font-size: 0.96rem;
+            line-height: 1.65;
+            color: var(--text-color);
+        }
+
+        .case-question-text {
+            font-style: italic;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .case-holding-text {
+            font-weight: 500;
+        }
+
+        /* THE KEY LEGAL PRINCIPLE - Highlighted takeaway */
+        .case-takeaway-box {
+            margin-top: 20px;
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary-light));
+            border: 1px solid var(--primary);
+            border-left: 5px solid var(--primary);
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        .case-takeaway-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        /* Exam Tip box for case cards */
+        .case-exam-tip {
+            margin-top: 14px;
+            background-color: var(--accent-light);
+            border-left: 4px solid var(--accent);
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-size: 0.88rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        .case-exam-tip-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+        .case-exam-tip-text { color: var(--text-color); line-height: 1.5; }
+        .case-exam-tip-text strong { color: var(--accent); }
+
+        /* ============================================
+           ENHANCED STUDY NOTES STYLES
+           ============================================ */
+
+        /* Exam Advisor tip box - shown inside study sections */
+        .exam-tip-box {
+            background: linear-gradient(135deg, rgba(79,70,229,0.07), rgba(14,165,233,0.07));
+            border: 1px solid var(--primary);
+            border-left: 5px solid var(--primary);
+            border-radius: 12px;
+            padding: 18px 20px;
+            margin: 20px 0;
+        }
+        .exam-tip-box-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 0.88rem;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        .exam-tip-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .exam-tip-box li {
+            padding-left: 20px;
+            position: relative;
+            font-size: 0.95rem;
+            line-height: 1.55;
+        }
+        .exam-tip-box li::before {
+            content: '➤';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-size: 0.75rem;
+            top: 3px;
+        }
+
+        /* Critical rule callout (danger/error variant) */
+        .critical-rule-box {
+            background-color: var(--error-light);
+            border-left: 5px solid var(--error);
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 18px 0;
+        }
+        .critical-rule-box-title {
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--error);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .critical-rule-box p {
+            font-size: 0.95rem;
+            margin-bottom: 0 !important;
+            line-height: 1.55;
+        }
+
+        /* Must-remember highlight span inline */
+        .highlight-gold {
+            background: linear-gradient(transparent 55%, rgba(251,191,36,0.45) 45%);
+            font-weight: 700;
+        }
+        .highlight-blue {
+            background: linear-gradient(transparent 55%, rgba(99,102,241,0.25) 45%);
+            font-weight: 700;
+        }
+        .highlight-green {
+            background: linear-gradient(transparent 55%, rgba(16,185,129,0.3) 45%);
+            font-weight: 700;
+        }
+
+        /* Flashcard Layout */
+        .flashcards-container {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .flashcard-wrapper {
+            perspective: 1000px;
+            width: 100%;
+            height: 360px;
+            margin: 20px 0;
+            cursor: pointer;
+        }
+
+        .flashcard-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            box-shadow: var(--shadow-lg);
+            border-radius: var(--radius);
+        }
+
+        .flashcard-wrapper.flipped .flashcard-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-front, .flashcard-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: var(--radius);
+            border: 1px solid var(--card-border);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .flashcard-front {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+        }
+
+        .flashcard-back {
+            background-color: var(--primary-light);
+            color: var(--text-color);
+            transform: rotateY(180deg);
+            border-color: var(--primary);
+        }
+
+        .flashcard-category {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .flashcard-question {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.45rem;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .flashcard-answer {
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        .flashcard-hint {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 24px;
+        }
+
+        .flashcard-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .flashcard-progress {
+            font-weight: 600;
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* Quiz UI */
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .quiz-progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: var(--bg-color);
+            border-radius: 4px;
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+
+        .quiz-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .quiz-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            font-weight: 600;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .quiz-question {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.4;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .quiz-option {
+            background-color: var(--bg-color);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 16px 20px;
+            font-size: 0.98rem;
+            font-weight: 500;
+            text-align: left;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--text-color);
+            line-height: 1.4;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--primary);
+            background-color: var(--primary-light);
+        }
+
+        .quiz-option.correct {
+            border-color: var(--success);
+            background-color: var(--success-light);
+            color: var(--text-color);
+        }
+
+        .quiz-option.incorrect {
+            border-color: var(--error);
+            background-color: var(--error-light);
+            color: var(--text-color);
+        }
+
+        .quiz-option-status {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-left: 10px;
+        }
+
+        .quiz-explanation-box {
+            display: none;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .quiz-explanation-box.correct-exp {
+            background-color: var(--success-light);
+            border-left: 4px solid var(--success);
+        }
+
+        .quiz-explanation-box.incorrect-exp {
+            background-color: var(--error-light);
+            border-left: 4px solid var(--error);
+        }
+
+        .quiz-explanation-title {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+
+        .quiz-explanation-text {
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .quiz-actions {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .quiz-result-screen {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .quiz-score-badge {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow);
+            border: 4px solid var(--primary);
+        }
+
+        .quiz-result-title {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+        }
+
+        .quiz-result-desc {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        /* Quick-Ref Glossary Panel */
+        .ref-panel {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .ref-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .ref-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .ref-card {
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 20px;
+            background-color: var(--bg-color);
+            transition: var(--transition);
+        }
+
+        .ref-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .ref-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .ref-title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--primary);
+        }
+
+        .ref-badge {
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: bold;
+            background-color: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .ref-desc {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Progress Stats Dashboard */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+            padding: 24px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-val {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .achievements-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+            padding: 28px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .ach-title {
+            font-size: 1.25rem;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 10px;
+        }
+
+        .ach-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .ach-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .ach-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 14px;
+            border-radius: 12px;
+            border: 1px solid var(--card-border);
+            background-color: var(--bg-color);
+            opacity: 0.5;
+            transition: var(--transition);
+        }
+
+        .ach-item.unlocked {
+            opacity: 1;
+            border-color: var(--accent);
+            background: linear-gradient(135deg, var(--card-bg), var(--accent-light));
+        }
+
+        .ach-icon {
+            font-size: 1.8rem;
+            min-width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: var(--card-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+        }
+
+        .ach-info-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-color);
+        }
+
+        .ach-info-desc {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
+        /* SVG Icons */
+        .svg-icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            stroke-width: 2;
+            stroke: currentColor;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            vertical-align: middle;
+        }
+
+        /* Mark Read Button */
+        .mark-read-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 16px;
+        }
+
+        .btn-mark {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-size: 0.85rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            border: 1px solid var(--card-border);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-mark.read {
+            background-color: var(--success-light);
+            color: var(--success);
+            border-color: var(--success);
+        }
+
+        /* Diagram Flowchart Styling */
+        .diagram-container {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin: 24px 0;
+            box-shadow: var(--shadow);
+            overflow-x: auto;
+            text-align: center;
+        }
+
+        .diagram-svg {
+            width: 100%;
+            height: auto;
+            max-width: 800px;
+            display: inline-block;
+        }
+
+        .diagram-node {
+            fill: var(--card-bg);
+            stroke: var(--card-border);
+            stroke-width: 2px;
+            rx: 10px;
+            ry: 10px;
+            transition: var(--transition);
+        }
+
+        .diagram-node:hover {
+            stroke: var(--primary);
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+        }
+
+        .node-main { fill: var(--primary-light); stroke: var(--primary); stroke-width: 3px; }
+        .node-branch { fill: var(--bg-color); stroke: var(--card-border); }
+        .node-leaf { fill: var(--secondary-light); stroke: var(--secondary); }
+        .node-accent-sub { fill: var(--accent-light); stroke: var(--accent); }
+        .node-success-sub { fill: var(--success-light); stroke: var(--success); }
+        .node-error-sub { fill: var(--error-light); stroke: var(--error); }
+
+        .diagram-text {
+            fill: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            text-anchor: middle;
+            pointer-events: none;
+        }
+
+        .diagram-text-title {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 13px;
+        }
+
+        .diagram-text-muted {
+            fill: var(--text-muted);
+            font-size: 10px;
+            font-weight: 500;
+        }
+
+        .diagram-line {
+            stroke: var(--text-muted);
+            stroke-width: 2px;
+            fill: none;
+        }
+
+        .diagram-line-no-arrow {
+            stroke: var(--text-muted);
+            stroke-width: 2px;
+            fill: none;
+        }
+        /* Mastery Progress Banner styling */
+        .mastery-banner {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 14px 20px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow);
+            
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .mastery-label {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .mastery-progress-container {
+            height: 10px;
+            background-color: var(--bg-color);
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .mastery-percent-value {
+            font-weight: 800;
+            color: var(--success);
+            min-width: 45px;
+            text-align: right;
+            font-size: 1rem;
+        }
+
+        /* Mobile-only overrides and TOC styles */
+        .mobile-toc-wrap {
+            display: none;
+        }
+
+        @media (max-width: 950px) {
+            .mobile-toc-wrap {
+                display: block;
+                margin-bottom: 24px;
+                background-color: var(--card-bg);
+                border: 1px solid var(--card-border);
+                border-radius: 14px;
+                padding: 16px;
+                box-shadow: var(--shadow);
+            }
+            .mobile-toc-select {
+                width: 100%;
+                padding: 12px 16px;
+                border-radius: 10px;
+                border: 1px solid var(--card-border);
+                background-color: var(--bg-color);
+                color: var(--text-color);
+                font-family: 'Inter', sans-serif;
+                font-size: 0.92rem;
+                font-weight: 600;
+                cursor: pointer;
+                outline: none;
+                transition: var(--transition);
+                appearance: none;
+                background-image: url("data:image/svg+xml;utf8,<svg fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='svg-icon' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+                background-repeat: no-repeat;
+                background-position: right 16px center;
+                background-size: 16px;
+            }
+            [data-theme="dark"] .mobile-toc-select {
+                background-image: url("data:image/svg+xml;utf8,<svg fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='svg-icon' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+            }
+            .mobile-toc-select:focus {
+                border-color: var(--primary);
+                box-shadow: 0 0 0 3px var(--primary-light);
+            }
+        }
+
+        /* Screen sizes below tablet (768px) */
+        @media (max-width: 768px) {
+            .comparison-grid, .ref-grid, .ach-list {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+                padding: 16px 0;
+                margin-bottom: 20px;
+            }
+            .header-controls {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .diagram-svg {
+                min-width: 680px; /* Force overflow scroll on mobile so text is legible */
+            }
+        }
+
+        /* Screen sizes for phones (600px and below) */
+        @media (max-width: 600px) {
+            .container {
+                padding: 12px;
+            }
+            .header-title-area h1 {
+                font-size: 1.5rem;
+            }
+            .btn-print {
+                display: none !important; /* Printing is not relevant on mobile screens */
+            }
+            
+            /* Responsive Navigation Tabs */
+            .nav-tabs {
+                -webkit-overflow-scrolling: touch;
+                padding: 4px;
+                border-radius: 12px;
+                margin-bottom: 20px;
+            }
+            .tab-btn {
+                min-width: 100px;
+                font-size: 0.85rem;
+                padding: 10px 12px;
+                gap: 4px;
+                border-radius: 8px;
+            }
+            .tab-btn svg {
+                width: 16px;
+                height: 16px;
+            }
+
+            /* Responsive Search Input */
+            .search-input {
+                padding: 12px 16px 12px 44px;
+                font-size: 0.92rem;
+                border-radius: 12px;
+            }
+            .search-icon {
+                left: 14px;
+                width: 16px;
+                height: 16px;
+            }
+
+            /* Mastery Banner stacked layout */
+            .mastery-banner {
+                grid-template-columns: 1fr auto;
+                gap: 8px 12px;
+                padding: 12px 16px;
+                margin-bottom: 20px;
+            }
+            .mastery-progress-container {
+                grid-column: span 2;
+            }
+
+            /* Study Section Cards */
+            .section-card {
+                padding: 18px;
+                border-radius: 12px;
+            }
+            .section-title {
+                font-size: 1.2rem;
+            }
+            .section-card-body {
+                font-size: 0.95rem;
+            }
+
+            /* Custom List spacing on mobile */
+            .custom-list li {
+                padding-left: 22px;
+                margin-bottom: 10px;
+                font-size: 0.95rem;
+            }
+            .custom-list li::before {
+                left: 6px;
+                font-size: 1.3rem;
+            }
+
+            /* Case Law Fields layout */
+            .case-card {
+                padding: 18px;
+                border-radius: 12px;
+            }
+            .case-title {
+                font-size: 1.1rem;
+            }
+            .case-citation {
+                font-size: 0.8rem;
+            }
+            .case-field-grid {
+                grid-template-columns: 1fr;
+                gap: 4px 0;
+                margin-bottom: 12px;
+            }
+            .case-takeaway-box {
+                font-size: 0.85rem;
+                padding: 10px 12px;
+            }
+
+            /* Reference cards spacing */
+            .ref-card {
+                padding: 16px;
+                border-radius: 10px;
+            }
+            .ref-card-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+            }
+            .ref-title {
+                font-size: 0.98rem;
+            }
+
+            /* Flashcards container scaling */
+            .flashcard-wrapper {
+                height: 340px;
+                margin: 16px 0;
+            }
+            .flashcard-front, .flashcard-back {
+                padding: 16px;
+                border-radius: 12px;
+            }
+            .flashcard-category {
+                margin-bottom: 12px;
+                font-size: 0.75rem;
+            }
+            .flashcard-question {
+                font-size: 1.1rem;
+            }
+            .flashcard-answer {
+                font-size: 0.88rem;
+            }
+            .flashcard-hint {
+                margin-top: 16px;
+                font-size: 0.78rem;
+            }
+
+            /* Practice Quiz option adjustments */
+            .quiz-container {
+                padding: 16px;
+                border-radius: 12px;
+            }
+            .quiz-question {
+                font-size: 1.1rem;
+                margin-bottom: 16px;
+            }
+            .quiz-option {
+                padding: 12px 16px;
+                font-size: 0.9rem;
+                border-radius: 10px;
+            }
+            .quiz-explanation-box {
+                padding: 14px;
+                border-radius: 10px;
+            }
+            .quiz-explanation-title {
+                font-size: 0.9rem;
+            }
+            .quiz-explanation-text {
+                font-size: 0.85rem;
+            }
+            .quiz-result-title {
+                font-size: 1.4rem;
+            }
+            .quiz-result-desc {
+                font-size: 0.95rem;
+            }
+
+            /* Progress statistics card scaling */
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .stat-card {
+                padding: 16px;
+                border-radius: 12px;
+            }
+            .stat-val {
+                font-size: 1.8rem;
+            }
+            
+            /* Achievements badges layout */
+            .ach-item {
+                gap: 12px;
+                padding: 10px;
+                border-radius: 10px;
+            }
+            .ach-icon {
+                min-width: 40px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.3rem;
+            }
+            .ach-info-title {
+                font-size: 0.9rem;
+            }
+            .ach-info-desc {
+                font-size: 0.78rem;
+            }
+
+            /* Footer scaling */
+            .main-footer {
+                padding: 30px 16px 16px;
+                margin-top: 40px;
+                gap: 12px;
+            }
+            .footer-brand-systems {
+                font-size: 1.1rem;
+            }
+            .footer-brand-ronny {
+                font-size: 0.9rem;
+            }
+            .footer-tagline {
+                font-size: 0.85rem;
+            }
+            .footer-copyright {
+                font-size: 0.72rem;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+                padding-bottom: 0 !important;
+            }
+            header, .nav-tabs, .search-container, .sidebar-nav, .flashcard-controls, .quiz-actions, .mark-read-container, .theme-toggle, .btn-print, .btn-reset, .filter-container {
+                display: none !important;
+            }
+            .guide-grid {
+                grid-template-columns: 1fr !important;
+            }
+            .tab-content {
+                display: block !important;
+                opacity: 1 !important;
+            }
+            .section-card {
+                page-break-inside: avoid;
+                border: 1px solid #ccc !important;
+                margin-bottom: 20px !important;
+                box-shadow: none !important;
+            }
+            .simple-english-box {
+                border: 1px solid #888 !important;
+                background: #f9f9f9 !important;
+            }
+        }
+
+        /* Brand Badge Styles */
+        .brand-badge {
+            display: flex;
+            align-items: center;
+            background-color: #ffffff;
+            border: 1px solid var(--card-border);
+            padding: 4px 10px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        .brand-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+        .brand-logo-img {
+            height: 40px;
+            width: auto;
+            display: block;
+            border-radius: 4px;
+        }
+
+        /* Footer Styling */
+        .main-footer {
+            margin-top: 60px;
+            padding: 40px 20px 20px;
+            border-top: 1px solid var(--card-border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            text-align: center;
+        }
+        .footer-brand {
+            background-color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 14px;
+            border: 1px solid var(--card-border);
+            box-shadow: var(--shadow);
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .footer-logo-img {
+            height: 100px;
+            width: auto;
+            display: block;
+            border-radius: 6px;
+        }
+        .footer-tagline {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            max-width: 500px;
+            font-weight: 500;
+        }
+        .footer-copyright {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            opacity: 0.8;
+            margin-top: 10px;
+        }
+
+        .glowing-text {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            background: linear-gradient(135deg, #10b981, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.35)) drop-shadow(0 0 15px rgba(59, 130, 246, 0.25));
+            margin-top: 12px;
+            animation: glow-pulse 2.5s infinite alternate;
+        }
+        @keyframes glow-pulse {
+            from {
+                filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.35)) drop-shadow(0 0 10px rgba(59, 130, 246, 0.25));
+            }
+            to {
+                filter: drop-shadow(0 0 12px rgba(16, 185, 129, 0.55)) drop-shadow(0 0 20px rgba(59, 130, 246, 0.45));
+            }
+        }
+
+        @media (max-width: 580px) {
+            .brand-badge {
+                padding: 3px 8px;
+            }
+            .brand-logo-img {
+                height: 30px;
+            }
+            .footer-logo-img {
+                height: 70px;
+            }
+            .glowing-text {
+                font-size: 1.2rem;
+                margin-top: 8px;
+            }
+        }
+
+        /* Past Paper & Predictions Tab Styles */
+        .analysis-hub-container {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .sub-nav-tabs {
+            display: inline-flex;
+            gap: 8px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 4px;
+            border-radius: 12px;
+            align-self: flex-start;
+            box-shadow: var(--shadow);
+            margin-bottom: 12px;
+        }
+
+        .sub-tab-btn {
+            padding: 8px 16px;
+            border: none;
+            background: none;
+            color: var(--text-muted);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .sub-tab-btn:hover {
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        .sub-tab-btn.active {
+            color: var(--primary);
+            background-color: var(--primary-light);
+        }
+
+        .sub-tab-content {
+            display: none;
+        }
+
+        .sub-tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        /* Accordion Styles for Past Paper */
+        .accordion-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .accordion-item {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .accordion-item:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .accordion-header {
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            background-color: var(--card-bg);
+            user-select: none;
+            transition: var(--transition);
+        }
+
+        .accordion-header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-grow: 1;
+        }
+
+        .accordion-label {
+            background-color: var(--primary-light);
+            color: var(--primary);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .accordion-title-text {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        .accordion-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .accordion-marks {
+            background-color: var(--accent-light);
+            color: var(--accent);
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+
+        .accordion-icon {
+            width: 20px;
+            height: 20px;
+            fill: var(--text-muted);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+            fill: var(--primary);
+        }
+
+        .accordion-item.active .accordion-header {
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .accordion-body {
+            padding: 24px;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+        }
+
+        .question-text-box {
+            background-color: var(--bg-color);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        .answer-heading {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-jump-notes {
+            margin-top: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            border: 1px solid transparent;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-jump-notes:hover {
+            background-color: var(--primary);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        /* Predictions Styles */
+        .predictions-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        .prediction-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+            padding: 28px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .prediction-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--accent), var(--primary));
+        }
+
+        .prediction-card:hover {
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .prediction-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 16px;
+            border-bottom: 1px dashed var(--card-border);
+            padding-bottom: 14px;
+        }
+
+        .prediction-title {
+            font-size: 1.3rem;
+            color: var(--text-color);
+        }
+
+        .prediction-reasoning-box {
+            background-color: var(--accent-light);
+            color: var(--text-color);
+            border-left: 4px solid var(--accent);
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .prediction-reasoning-box strong {
+            color: var(--accent);
+        }
+
+        .glow-highlight {
+            animation: target-glow 2s ease-in-out;
+        }
+
+        @keyframes target-glow {
+            0% {
+                border-color: var(--primary);
+                box-shadow: 0 0 0 4px var(--primary-light);
+            }
+            50% {
+                border-color: var(--primary);
+                box-shadow: 0 0 0 10px var(--primary-light);
+            }
+            100% {
+                border-color: var(--card-border);
+                box-shadow: none;
+            }
+        }
+
+        @media print {
+            .main-footer, .whatsapp-btn, .sub-nav-tabs, .btn-jump-notes {
+                display: none !important;
+            }
+            .accordion-content {
+                max-height: none !important;
+                overflow: visible !important;
+            }
+            .accordion-item {
+                box-shadow: none !important;
+                border: 1px solid #ccc !important;
+                margin-bottom: 16px !important;
+                page-break-inside: avoid;
+            }
+            .prediction-card {
+                box-shadow: none !important;
+                border: 1px solid #ccc !important;
+                margin-bottom: 16px !important;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header Area -->
+    <header>
+        <div class="header-title-area">
+            <h1>Construction Law Dashboard</h1>
+            <p>EACQ 3214 & 3114 • Quantity Surveying & Construction Management YR 3.2</p>
+        </div>
+        <div class="header-controls">
+            <!-- Brand Badge (Systems by Ronny) -->
+            <div class="brand-badge" title="Systems by Ronny">
+                <img src="logo.jpeg" alt="Systems by Ronny Logo" class="brand-logo-img" />
+            </div>
+
+            <button class="btn btn-print" onclick="window.print()">
+                <svg class="svg-icon" viewBox="0 0 24 24"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                Print Notes
+            </button>
+            <button class="btn theme-toggle" id="theme-btn" onclick="toggleTheme()" aria-label="Toggle Dark Mode">
+                <svg class="svg-icon" id="sun-icon" viewBox="0 0 24 24" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                <svg class="svg-icon" id="moon-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Global Progress Bar -->
+    <div class="mastery-banner">
+        <span class="mastery-label">Overall Mastery</span>
+        <div class="mastery-progress-container">
+            <div id="mastery-progress-fill" style="height: 100%; background: linear-gradient(90deg, #10b981, #059669); width: 0%; transition: width 0.4s ease;"></div>
+        </div>
+        <span id="mastery-percent" class="mastery-percent-value">0%</span>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs" aria-label="Dashboard views">
+        <button class="tab-btn active" onclick="switchTab('guide')">
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+            Study Guide
+        </button>
+        <button class="tab-btn" onclick="switchTab('cases')">
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            Case Law Library
+        </button>
+        <button class="tab-btn" onclick="switchTab('cards')">
+            <svg class="svg-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+            Flashcards
+        </button>
+        <button class="tab-btn" onclick="switchTab('quiz')">
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+            Practice Quiz
+        </button>
+        <button class="tab-btn" onclick="switchTab('analysis')">
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            Exam Prep Hub
+        </button>
+        <button class="tab-btn" onclick="switchTab('ref')">
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+            Laws Quick-Ref
+        </button>
+        <button class="tab-btn" onclick="switchTab('stats')">
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path></svg>
+            My Progress
+        </button>
+    </nav>
+
+    <!-- SEARCH CONTAINER -->
+    <div class="search-container" id="search-section">
+        <svg class="search-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" class="search-input" id="search-bar" placeholder="Search the notes for keywords, laws, caps, or section numbers..." oninput="handleSearch()">
+    </div>
+
+    <!-- TAB 1: STUDY GUIDE -->
+    <main class="tab-content active" id="tab-guide">
+        <div class="guide-grid">
+            <!-- Sidebar Navigation -->
+            <aside class="sidebar-nav">
+                <h2 class="sidebar-title">Syllabus Topics</h2>
+                <ul class="sidebar-links" id="sidebar-links-container">
+                    <!-- Links generated dynamically -->
+                </ul>
+            </aside>
+
+            <!-- Main Content Area -->
+            <div class="content-area">
+                <div class="mobile-toc-wrap">
+                    <label for="mobile-toc" style="display: block; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; font-family: 'Outfit', sans-serif;">Table of Contents (Mobile)</label>
+                    <select id="mobile-toc" class="mobile-toc-select" onchange="jumpToSectionMobile(this.value)">
+                        <!-- Options generated dynamically -->
+                    </select>
+                </div>
+                <div id="study-guide-content-area">
+                    <!-- Section cards rendered dynamically -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- TAB 2: CASE LAW LIBRARY -->
+    <section class="tab-content" id="tab-cases">
+        <div class="filter-container" id="case-filters-container">
+            <!-- Filter buttons generated dynamically -->
+        </div>
+        <div class="case-grid" id="case-cards-container">
+            <!-- Case cards generated dynamically -->
+        </div>
+    </section>
+
+    <!-- TAB 3: FLASHCARDS -->
+    <section class="tab-content" id="tab-cards">
+        <div class="flashcards-container">
+            <h2 style="font-size: 1.8rem; margin-bottom: 8px;">Interactive Study Flashcards</h2>
+            <p style="color: var(--text-muted); margin-bottom: 24px;">Click the card to flip it and reveal the answer. Use the buttons below to navigate.</p>
+            
+            <div class="flashcard-wrapper" onclick="flipCard()">
+                <div class="flashcard-inner" id="flashcard-inner">
+                    <!-- Front of card -->
+                    <div class="flashcard-front">
+                        <span class="flashcard-category" id="card-cat">Category</span>
+                        <div class="flashcard-question" id="card-q">Question Text</div>
+                        <div class="flashcard-hint">Tap to flip & show answer</div>
+                    </div>
+                    <!-- Back of card -->
+                    <div class="flashcard-back">
+                        <span class="flashcard-category" style="color: var(--primary);">ANSWER</span>
+                        <div class="flashcard-answer" id="card-a">Answer Text</div>
+                        <div class="flashcard-hint" style="color: var(--text-muted);">Tap to flip back</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flashcard-controls">
+                <button class="btn" onclick="prevCard()">
+                    <svg class="svg-icon" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    Previous
+                </button>
+                <span class="flashcard-progress" id="card-progress">1 / 30</span>
+                <button class="btn" onclick="nextCard()">
+                    Next
+                    <svg class="svg-icon" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- TAB 4: QUIZ -->
+    <section class="tab-content" id="tab-quiz">
+        <div class="quiz-container" id="quiz-box">
+            <!-- Active Question Screen -->
+            <div id="quiz-active-screen">
+                <div class="quiz-progress-bar">
+                    <div class="quiz-progress-fill" id="quiz-progress-fill"></div>
+                </div>
+                <div class="quiz-meta">
+                    <span id="quiz-question-number">Question 1 of 30</span>
+                    <span id="quiz-score-tracker">Score: 0/0</span>
+                </div>
+                <div class="quiz-question" id="quiz-question-text">Question loading...</div>
+                <div class="quiz-options" id="quiz-options-container">
+                    <!-- Option buttons dynamically generated -->
+                </div>
+                <div class="quiz-explanation-box" id="quiz-explanation-box">
+                    <div class="quiz-explanation-title" id="quiz-explanation-title">Explanation</div>
+                    <div class="quiz-explanation-text" id="quiz-explanation-text">Explanation text goes here.</div>
+                </div>
+                <div class="quiz-actions">
+                    <button class="btn btn-primary" id="quiz-next-btn" onclick="quizNextQuestion()" disabled>Next Question</button>
+                </div>
+            </div>
+
+            <!-- Quiz Result Screen -->
+            <div id="quiz-result-screen" class="quiz-result-screen" style="display: none;">
+                <div class="quiz-score-badge" id="quiz-final-score">80%</div>
+                <h3 class="quiz-result-title" id="quiz-result-title">Excellent Job!</h3>
+                <p class="quiz-result-desc" id="quiz-result-desc">You have completed the mock quiz.</p>
+                <div style="display: flex; justify-content: center; gap: 12px;">
+                    <button class="btn btn-primary" onclick="restartQuiz()">Retry Quiz</button>
+                    <button class="btn" onclick="switchTab('guide')">Review Notes</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TAB 4.5: EXAM PREP HUB -->
+    <section class="tab-content" id="tab-analysis">
+        <div class="analysis-hub-container">
+            <h2 style="font-size: 1.8rem; margin-bottom: 8px;">Exam Preparation Hub</h2>
+            <p style="color: var(--text-muted); margin-bottom: 24px;">Review structured analysis of past TUK exams and high-yield predictions for the upcoming Wednesday examination.</p>
+
+            <!-- Sub Navigation Tabs for Exam Hub -->
+            <div class="sub-nav-tabs" role="tablist">
+                <button class="sub-tab-btn active" id="subtab-pastpaper-btn" onclick="switchSubTab('pastpaper')" role="tab" aria-selected="true">
+                    TUK Past Paper Analysis
+                </button>
+                <button class="sub-tab-btn" id="subtab-predictions-btn" onclick="switchSubTab('predictions')" role="tab" aria-selected="false">
+                    Wednesday Exam Predictions
+                </button>
+            </div>
+
+            <!-- Sub Tab 1: Past Paper Analysis -->
+            <div class="sub-tab-content active" id="subtab-pastpaper">
+                <div class="accordion-list" id="past-paper-accordion-container">
+                    <!-- Dynamic past paper items go here -->
+                </div>
+            </div>
+
+            <!-- Sub Tab 2: Wednesday Predictions -->
+            <div class="sub-tab-content" id="subtab-predictions">
+                <div class="predictions-grid" id="predictions-cards-container">
+                    <!-- Dynamic predicted question items go here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TAB 5: QUICK-REF GLOSSARY -->
+    <section class="tab-content" id="tab-ref">
+        <div class="ref-panel">
+            <h2 style="font-size: 1.8rem; margin-bottom: 8px;">Kenyan Laws & Articles Reference Directory</h2>
+            <p style="color: var(--text-muted); margin-bottom: 24px;">Quick lookups of all Constitution Articles, Legislative Caps, and Sections cited in the study notes.</p>
+            
+            <div class="ref-grid" id="ref-cards-container">
+                <!-- Reference cards generated dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- TAB 6: STATS DASHBOARD -->
+    <section class="tab-content" id="tab-stats">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-val" id="stats-read-count">0 / 14</div>
+                <div class="stat-label">Syllabus Topics Read</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-val" id="stats-flipped-count">0</div>
+                <div class="stat-label">Flashcards Flipped</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-val" id="stats-quiz-score">N/A</div>
+                <div class="stat-label">Quiz High Score</div>
+            </div>
+        </div>
+
+        <div class="achievements-box">
+            <h3 class="ach-title">Study Milestones & Badges</h3>
+            <div class="ach-list">
+                <!-- Badge 1 -->
+                <div class="ach-item" id="ach-explorer">
+                    <div class="ach-icon">📖</div>
+                    <div>
+                        <div class="ach-info-title">Syllabus Explorer</div>
+                        <div class="ach-info-desc">Read at least 1 section of the study notes.</div>
+                    </div>
+                </div>
+                <!-- Badge 2 -->
+                <div class="ach-item" id="ach-scholar">
+                    <div class="ach-icon">🎓</div>
+                    <div>
+                        <div class="ach-info-title">Syllabus Master</div>
+                        <div class="ach-info-desc">Read all study guide sections.</div>
+                    </div>
+                </div>
+                <!-- Badge 3 -->
+                <div class="ach-item" id="ach-card">
+                    <div class="ach-icon">🎴</div>
+                    <div>
+                        <div class="ach-info-title">Flashcard Champ</div>
+                        <div class="ach-info-desc">Flip through all study flashcards.</div>
+                    </div>
+                </div>
+                <!-- Badge 4 -->
+                <div class="ach-item" id="ach-quiz">
+                    <div class="ach-icon">🏆</div>
+                    <div>
+                        <div class="ach-info-title">Exam Ready</div>
+                        <div class="ach-info-desc">Score 80% or higher on the Practice Quiz.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 12px;">
+            <button class="btn btn-reset" onclick="resetAllProgress()" style="color: var(--error); border-color: var(--error);">
+                <svg class="svg-icon" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                Reset All Progress
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer Area (Systems by Ronny) -->
+    <footer class="main-footer">
+        <div class="footer-brand">
+            <img src="logo.jpeg" alt="Systems by Ronny Logo" class="footer-logo-img" />
+        </div>
+        <div class="glowing-text">Systems by Ronny</div>
+
+        <!-- Developer Contact Card -->
+        <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:20px; padding:28px 32px; margin-top:16px; box-shadow:var(--shadow-lg); display:flex; flex-direction:column; align-items:center; gap:16px; max-width:480px; width:100%;">
+            <p style="font-family:'Outfit',sans-serif; font-size:1rem; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.08em; margin:0;">Contact Developer</p>
+
+            <!-- Phone number (visible) -->
+            <div style="display:flex; align-items:center; gap:10px; background:var(--bg-color); border:1px solid var(--card-border); border-radius:12px; padding:10px 18px; width:100%; justify-content:center;">
+                <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:none;stroke:var(--primary);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.03 2.18 2 2 0 012 .03h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14z"/></svg>
+                <span style="font-family:'Outfit',sans-serif; font-weight:800; font-size:1.15rem; color:var(--text-color); letter-spacing:0.03em;">0745 806 488</span>
+            </div>
+
+            <!-- Action buttons row -->
+            <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center; width:100%;">
+
+                <!-- WhatsApp -->
+                <a href="https://wa.me/254745806488" target="_blank" rel="noopener noreferrer"
+                   style="display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;text-decoration:none;padding:10px 18px;border-radius:50px;font-family:'Outfit',sans-serif;font-weight:700;font-size:0.9rem;box-shadow:0 4px 12px rgba(37,211,102,0.4);transition:all 0.25s;flex:1;min-width:130px;justify-content:center;"
+                   onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 20px rgba(37,211,102,0.55)'"
+                   onmouseout="this.style.transform='';this.style.boxShadow='0 4px 12px rgba(37,211,102,0.4)'">
+                    <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:#fff;flex-shrink:0;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    WhatsApp
+                </a>
+
+                <!-- LinkedIn -->
+                <a href="https://www.linkedin.com/in/ronny-winstone" target="_blank" rel="noopener noreferrer"
+                   style="display:inline-flex;align-items:center;gap:8px;background:#0A66C2;color:#fff;text-decoration:none;padding:10px 18px;border-radius:50px;font-family:'Outfit',sans-serif;font-weight:700;font-size:0.9rem;box-shadow:0 4px 12px rgba(10,102,194,0.4);transition:all 0.25s;flex:1;min-width:130px;justify-content:center;"
+                   onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 20px rgba(10,102,194,0.55)'"
+                   onmouseout="this.style.transform='';this.style.boxShadow='0 4px 12px rgba(10,102,194,0.4)'">
+                    <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:#fff;flex-shrink:0;"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    LinkedIn
+                </a>
+
+                <!-- Portfolio -->
+                <a href="https://ronnydevportfolio.vercel.app" target="_blank" rel="noopener noreferrer"
+                   style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#4f46e5,#0ea5e9);color:#fff;text-decoration:none;padding:10px 18px;border-radius:50px;font-family:'Outfit',sans-serif;font-weight:700;font-size:0.9rem;box-shadow:0 4px 12px rgba(79,70,229,0.4);transition:all 0.25s;flex:1;min-width:130px;justify-content:center;"
+                   onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 20px rgba(79,70,229,0.55)'"
+                   onmouseout="this.style.transform='';this.style.boxShadow='0 4px 12px rgba(79,70,229,0.4)'">
+                    <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                    Portfolio
+                </a>
+            </div>
+        </div>
+
+        <p class="footer-tagline">Providing state-of-the-art technological systems and educational solutions.</p>
+        <p class="footer-copyright">&copy; 2026 Systems by Ronny. All rights reserved. Created with passion for educational excellence.</p>
+    </footer>
+</div>
+
+<!-- Load Modulized Javascript Data Files -->
+<script src="study_guide_data.js"></script>
+<script src="case_law_data.js"></script>
+<script src="quiz_flashcard_data.js"></script>
+<script src="exam_analysis_data.js"></script>
+
+<script>
+    // Global App State
+    let state = {
+        theme: 'light',
+        currentTab: 'guide',
+        readSections: [],
+        flippedCards: new Set(),
+        quizHighScore: null,
+        currentCardIdx: 0,
+        activeCaseFilter: "All"
+    };
+
+    // Initialize Dashboard
+    window.addEventListener('DOMContentLoaded', () => {
+        // Build DOM structures dynamically from loaded datasets
+        renderStudyGuide();
+        renderCaseFilters();
+        renderCaseCards();
+        renderRefCards();
+        renderPastPaper();
+        renderPredictions();
+        
+        loadProgress();
+        initFlashcard();
+        initQuiz();
+        updateMasteryUI();
+    });
+
+    // Theme Toggle
+    function toggleTheme() {
+        const body = document.body;
+        const currentTheme = body.getAttribute('data-theme');
+        const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        body.setAttribute('data-theme', nextTheme);
+        state.theme = nextTheme;
+        
+        document.getElementById('sun-icon').style.display = nextTheme === 'dark' ? 'inline-block' : 'none';
+        document.getElementById('moon-icon').style.display = nextTheme === 'dark' ? 'none' : 'inline-block';
+        
+        localStorage.setItem('theme', nextTheme);
+    }
+
+    // Load theme & progress
+    function loadProgress() {
+        // Theme load
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.body.setAttribute('data-theme', savedTheme);
+        state.theme = savedTheme;
+        document.getElementById('sun-icon').style.display = savedTheme === 'dark' ? 'inline-block' : 'none';
+        document.getElementById('moon-icon').style.display = savedTheme === 'dark' ? 'none' : 'inline-block';
+
+        // Read sections progress
+        const savedRead = localStorage.getItem('readSections');
+        if (savedRead) {
+            state.readSections = JSON.parse(savedRead);
+            state.readSections.forEach(secId => {
+                const btn = document.querySelector(`#${secId} .btn-mark`);
+                if (btn) {
+                    btn.classList.add('read');
+                    btn.textContent = 'Read ✓';
+                }
+            });
+        }
+
+        // Flipped cards
+        const savedFlipped = localStorage.getItem('flippedCards');
+        if (savedFlipped) {
+            state.flippedCards = new Set(JSON.parse(savedFlipped));
+        }
+
+        // Quiz score
+        const savedScore = localStorage.getItem('quizHighScore');
+        if (savedScore) {
+            state.quizHighScore = parseInt(savedScore, 10);
+        }
+
+        updateStatsUI();
+    }
+
+    // Render Study Guide Sections & Sidebar links
+    function renderStudyGuide() {
+        const linksContainer = document.getElementById('sidebar-links-container');
+        const contentContainer = document.getElementById('study-guide-content-area');
+        const mobileToc = document.getElementById('mobile-toc');
+        
+        linksContainer.innerHTML = '';
+        contentContainer.innerHTML = '';
+        if (mobileToc) {
+            mobileToc.innerHTML = '<option value="" disabled selected>Jump to a topic...</option>';
+        }
+
+        window.STUDY_SECTIONS.forEach((sec, idx) => {
+            // Sidebar link
+            const li = document.createElement('li');
+            li.innerHTML = `<a href="#${sec.id}" class="sidebar-link ${idx === 0 ? 'active' : ''}" onclick="smoothScroll(event, '${sec.id}')">${idx + 1}. ${sec.title} <span>→</span></a>`;
+            linksContainer.appendChild(li);
+
+            // Mobile TOC link
+            if (mobileToc) {
+                const opt = document.createElement('option');
+                opt.value = sec.id;
+                opt.textContent = `${idx + 1}. ${sec.title}`;
+                mobileToc.appendChild(opt);
+            }
+
+            // Card card
+            const card = document.createElement('section');
+            card.className = 'section-card';
+            card.id = sec.id;
+            card.innerHTML = `
+                <div class="section-header">
+                    <div class="section-title-wrap">
+                        <span class="section-badge badge-style">${sec.badge}</span>
+                        <h2 class="section-title">${sec.title}</h2>
+                    </div>
+                </div>
+                <div class="section-card-body">
+                    ${sec.content}
+                    <div class="mark-read-container">
+                        <button class="btn btn-mark" onclick="toggleRead('${sec.id}', this)">Mark as Read</button>
+                    </div>
+                </div>
+            `;
+            contentContainer.appendChild(card);
+        });
+    }
+
+    // Scroll to section on mobile dropdown change
+    function jumpToSectionMobile(secId) {
+        if (!secId) return;
+        const target = document.getElementById(secId);
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
+            // Highlight target card temporarily
+            target.style.borderColor = 'var(--primary)';
+            target.style.boxShadow = '0 0 0 4px var(--primary-light)';
+            
+            setTimeout(() => {
+                target.style.borderColor = 'var(--card-border)';
+                target.style.boxShadow = 'none';
+            }, 2000);
+        }
+    }
+
+    // Render Case Filters
+    function renderCaseFilters() {
+        const container = document.getElementById('case-filters-container');
+        container.innerHTML = '';
+
+        // Extract unique categories
+        const categories = ["All", ...new Set(window.CASE_LAW_DATA.map(c => c.category))];
+        
+        categories.forEach(cat => {
+            const btn = document.createElement('button');
+            btn.className = `filter-btn ${cat === 'All' ? 'active' : ''}`;
+            btn.textContent = cat;
+            btn.onclick = () => filterCases(cat, btn);
+            container.appendChild(btn);
+        });
+    }
+
+    // Must-know cases (these appear in exams most frequently)
+    const MUST_KNOW_CASES = new Set([
+        "Salomon v. Salomon & Co. Ltd",
+        "Foss v. Harbottle",
+        "Jones v. Lipman",
+        "Gilford Motor Co. v. Horne",
+        "De Beers Consolidated Mines Ltd v. Howe",
+        "Ashbury Railway Carriage Co. Ltd v. Riche",
+        "Hickman v. Kent or Romney Marsh Sheep Breeders Assoc",
+        "Royal British Bank vs. Turquand",
+        "Bamford v. Bamford",
+        "Southern Foundries v. Shirlaw",
+        "Re Lee Behrens & Co. Ltd",
+        "Lee v. Lee's Air Farming Ltd."
+    ]);
+
+    // Exam tip overrides per case (additional examinable angle)
+    const CASE_EXAM_TIPS = {
+        "Salomon v. Salomon & Co. Ltd": "⚡ Most examined case. Know that the veil is NOT lifted just because one person owns all shares. The company is still separate.",
+        "Foss v. Harbottle": "⚡ Know the FOUR exceptions: fraud on minority, ultra vires, special majority, personal rights of a member.",
+        "Jones v. Lipman": "⚡ Classic veil-lifting — company used as a 'cloak'. Examiner loves asking: what remedy did court grant? (Specific performance against both parties.)",
+        "Gilford Motor Co. v. Horne": "⚡ Know the term 'mere cloak and sham'. Often paired with Jones v Lipman as fraud-on-equity veil lifting.",
+        "De Beers Consolidated Mines Ltd v. Howe": "⚡ Test for company residence = where central management & control is exercised (where board meets). Not where incorporated.",
+        "Ashbury Railway Carriage Co. Ltd v. Riche": "⚡ Ultra vires contract = VOID from inception. Cannot be ratified even by 100% shareholders — examiners specifically test this.",
+        "Hickman v. Kent or Romney Marsh Sheep Breeders Assoc": "⚡ Articles are a contract between the company and its members IN THEIR CAPACITY AS MEMBERS only.",
+        "Royal British Bank vs. Turquand": "⚡ Outsiders need not check internal compliance. BUT the rule does NOT apply to: forgery, knowledge of irregularity, insider dealing.",
+        "Bamford v. Bamford": "⚡ Shareholders can ratify improper director acts IF it is not ultra vires and fraud on minority exceptions don't apply.",
+        "Southern Foundries v. Shirlaw": "⚡ Company can alter its articles BUT must pay DAMAGES if that alteration breaches an independent service contract.",
+        "Re Lee Behrens & Co. Ltd": "⚡ Three-fold test for gratuitous payments: (1) Incidental to business (2) Bona fide (3) Promotes company prosperity.",
+        "Lee v. Lee's Air Farming Ltd.": "⚡ A sole shareholder/director can ALSO be an employee — the company and person are separate legal entities."
+    };
+
+    // Render Case Cards — premium visual version
+    function renderCaseCards() {
+        const container = document.getElementById('case-cards-container');
+        container.innerHTML = '';
+
+        const query = document.getElementById('search-bar').value.toLowerCase().trim();
+
+        window.CASE_LAW_DATA.forEach(c => {
+            const matchesFilter = state.activeCaseFilter === 'All' || c.category === state.activeCaseFilter;
+            const matchesSearch = c.name.toLowerCase().includes(query) || 
+                                  c.category.toLowerCase().includes(query) || 
+                                  c.facts.toLowerCase().includes(query) || 
+                                  c.holding.toLowerCase().includes(query);
+
+            if (!matchesFilter || !matchesSearch) return;
+
+            const isMustKnow = MUST_KNOW_CASES.has(c.name);
+            const examTip = CASE_EXAM_TIPS[c.name];
+
+            const card = document.createElement('article');
+            card.className = 'case-card';
+            card.setAttribute('data-cat', c.category);
+            card.id = `case-${c.name.replace(/[\s&.,']+/g, '-')}`;
+            card.innerHTML = `
+                <div class="case-card-top-bar"></div>
+                <div class="case-card-inner">
+                    <div class="case-header">
+                        <div class="case-header-left">
+                            <div class="case-title-row">
+                                <h3 class="case-title">${c.name}</h3>
+                                ${isMustKnow ? '<span class="must-know-badge">⭐ Must Know</span>' : ''}
+                            </div>
+                            <span class="case-category-tag">
+                                <svg viewBox="0 0 24 24" style="width:12px;height:12px;fill:currentColor;"><path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/></svg>
+                                ${c.category}
+                            </span>
+                        </div>
+                        <span class="case-citation">${c.citation}</span>
+                    </div>
+
+                    <div class="case-sections">
+                        <div class="case-section-row">
+                            <div class="case-label">📋 Facts</div>
+                            <div class="case-section-value" style="color: var(--text-muted);">${c.facts}</div>
+                        </div>
+                        <div class="case-section-row">
+                            <div class="case-label">❓ Issue</div>
+                            <div class="case-section-value case-question-text">${c.question}</div>
+                        </div>
+                        <div class="case-section-row">
+                            <div class="case-label">⚖️ Held</div>
+                            <div class="case-section-value case-holding-text">${c.holding}</div>
+                        </div>
+                    </div>
+
+                    <div class="case-takeaway-box">
+                        <div class="case-takeaway-label">
+                            <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:var(--primary);"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                            Key Legal Principle
+                        </div>
+                        ${c.takeaway}
+                    </div>
+
+                    ${examTip ? `
+                    <div class="case-exam-tip">
+                        <span class="case-exam-tip-icon">🎯</span>
+                        <div class="case-exam-tip-text"><strong>Exam Angle:</strong> ${examTip}</div>
+                    </div>` : ''}
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    // Switch Dashboard Tabs
+    function switchTab(tabId) {
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        
+        // Find click button and tab contents
+        const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(btn => btn.getAttribute('onclick').includes(tabId));
+        if (activeBtn) activeBtn.classList.add('active');
+        
+        const activeContent = document.getElementById(`tab-${tabId}`);
+        if (activeContent) activeContent.classList.add('active');
+
+        state.currentTab = tabId;
+
+        // Toggle search bar visibility based on tab
+        const searchSec = document.getElementById('search-section');
+        if (tabId === 'guide' || tabId === 'ref' || tabId === 'cases') {
+            searchSec.style.display = 'block';
+            document.getElementById('search-bar').value = '';
+            handleSearch(); // reset search results
+        } else {
+            searchSec.style.display = 'none';
+        }
+    }
+
+    // Filter Cases by Category
+    function filterCases(category, btn) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        state.activeCaseFilter = category;
+        renderCaseCards();
+    }
+
+    // Progress Toggle (Mark as Read)
+    function toggleRead(secId, btn) {
+        const idx = state.readSections.indexOf(secId);
+        if (idx === -1) {
+            state.readSections.push(secId);
+            btn.classList.add('read');
+            btn.textContent = 'Read ✓';
+        } else {
+            state.readSections.splice(idx, 1);
+            btn.classList.remove('read');
+            btn.textContent = 'Mark as Read';
+        }
+        localStorage.setItem('readSections', JSON.stringify(state.readSections));
+        updateMasteryUI();
+        updateStatsUI();
+    }
+
+    // Update Overall Mastery Bar
+    const TOTAL_SECTIONS = () => window.STUDY_SECTIONS.length;
+    function updateMasteryUI() {
+        const sectionsReadCount = state.readSections.length;
+        const cardsFlippedCount = Math.min(state.flippedCards.size, window.FLASHCARDS_DATA.length);
+        const quizPercent = state.quizHighScore ? state.quizHighScore : 0;
+
+        // Weights: Reading sections = 40%, Flashcards flipped = 30%, Quiz High Score = 30%
+        const readWeight = (sectionsReadCount / TOTAL_SECTIONS()) * 40;
+        const cardWeight = (cardsFlippedCount / window.FLASHCARDS_DATA.length) * 30;
+        const quizWeight = (quizPercent / 100) * 30;
+        
+        const overallMastery = Math.round(readWeight + cardWeight + quizWeight);
+        
+        document.getElementById('mastery-progress-fill').style.width = `${overallMastery}%`;
+        document.getElementById('mastery-percent').textContent = `${overallMastery}%`;
+    }
+
+    // Update Stats tab UI & Achievements
+    function updateStatsUI() {
+        document.getElementById('stats-read-count').textContent = `${state.readSections.length} / ${TOTAL_SECTIONS()}`;
+        document.getElementById('stats-flipped-count').textContent = `${state.flippedCards.size} / ${window.FLASHCARDS_DATA.length}`;
+        document.getElementById('stats-quiz-score').textContent = state.quizHighScore !== null ? `${state.quizHighScore}%` : 'N/A';
+
+        // Achievements Logic
+        const achExplorer = document.getElementById('ach-explorer');
+        const achScholar = document.getElementById('ach-scholar');
+        const achCard = document.getElementById('ach-card');
+        const achQuiz = document.getElementById('ach-quiz');
+
+        // Explorer badge
+        if (state.readSections.length >= 1) {
+            achExplorer.classList.add('unlocked');
+        } else {
+            achExplorer.classList.remove('unlocked');
+        }
+
+        // Scholar badge
+        if (state.readSections.length === TOTAL_SECTIONS()) {
+            achScholar.classList.add('unlocked');
+        } else {
+            achScholar.classList.remove('unlocked');
+        }
+
+        // Flashcard badge
+        if (state.flippedCards.size === window.FLASHCARDS_DATA.length) {
+            achCard.classList.add('unlocked');
+        } else {
+            achCard.classList.remove('unlocked');
+        }
+
+        // Quiz badge
+        if (state.quizHighScore !== null && state.quizHighScore >= 80) {
+            achQuiz.classList.add('unlocked');
+        } else {
+            achQuiz.classList.remove('unlocked');
+        }
+    }
+
+    // Interactive Search logic
+    function handleSearch() {
+        const query = document.getElementById('search-bar').value.toLowerCase().trim();
+
+        if (state.currentTab === 'guide') {
+            document.querySelectorAll('.section-card').forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if (text.includes(query)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        } else if (state.currentTab === 'cases') {
+            renderCaseCards();
+        } else if (state.currentTab === 'ref') {
+            document.querySelectorAll('.ref-card').forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if (text.includes(query)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    }
+
+    // Smooth Scrolling & Section Highlighting for Sidebar Navigation
+    function smoothScroll(event, targetId) {
+        event.preventDefault();
+        
+        // Highlight active sidebar link
+        document.querySelectorAll('.sidebar-link').forEach(link => link.classList.remove('active'));
+        event.currentTarget.classList.add('active');
+
+        // Scroll
+        const target = document.getElementById(targetId);
+        target.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Flashcard Actions
+    function initFlashcard() {
+        showCard(state.currentCardIdx);
+    }
+
+    function showCard(idx) {
+        const card = window.FLASHCARDS_DATA[idx];
+        document.getElementById('card-cat').textContent = card.category;
+        document.getElementById('card-q').textContent = card.question;
+        document.getElementById('card-a').innerHTML = card.answer;
+        document.getElementById('card-progress').textContent = `${idx + 1} / ${window.FLASHCARDS_DATA.length}`;
+        
+        // Reset card flip rotation
+        document.getElementById('flashcard-wrapper').classList.remove('flipped');
+    }
+
+    function flipCard() {
+        const wrapper = document.getElementById('flashcard-wrapper');
+        wrapper.classList.toggle('flipped');
+
+        // Track flipped card progress
+        if (!state.flippedCards.has(state.currentCardIdx)) {
+            state.flippedCards.add(state.currentCardIdx);
+            localStorage.setItem('flippedCards', JSON.stringify(Array.from(state.flippedCards)));
+            updateMasteryUI();
+            updateStatsUI();
+        }
+    }
+
+    function nextCard() {
+        state.currentCardIdx = (state.currentCardIdx + 1) % window.FLASHCARDS_DATA.length;
+        showCard(state.currentCardIdx);
+    }
+
+    function prevCard() {
+        state.currentCardIdx = (state.currentCardIdx - 1 + window.FLASHCARDS_DATA.length) % window.FLASHCARDS_DATA.length;
+        showCard(state.currentCardIdx);
+    }
+
+    // Reference directory rendering
+    function renderRefCards() {
+        const container = document.getElementById('ref-cards-container');
+        container.innerHTML = '';
+        window.REF_DATA_ITEMS.forEach(ref => {
+            const card = document.createElement('div');
+            card.className = 'ref-card';
+            card.id = `ref-${ref.name.replace(/\s+/g, '-')}`;
+            card.innerHTML = `
+                <div class="ref-card-header">
+                    <span class="ref-title">${ref.name}</span>
+                    <span class="ref-badge">${ref.type}</span>
+                </div>
+                <p class="ref-desc">${ref.desc}</p>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    // Jump from syllabus notes directly to Quick Reference card
+    function jumpToRef(refName) {
+        switchTab('ref');
+        
+        // Find reference card element
+        const targetId = `ref-${refName.replace(/\s+/g, '-')}`;
+        const card = document.getElementById(targetId);
+        if (card) {
+            // Scroll to it
+            setTimeout(() => {
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                card.style.borderColor = 'var(--primary)';
+                card.style.boxShadow = '0 0 0 4px var(--primary-light)';
+                
+                // Reset highlighting after 2 seconds
+                setTimeout(() => {
+                    card.style.borderColor = 'var(--card-border)';
+                    card.style.boxShadow = 'none';
+                }, 2000);
+            }, 100);
+        }
+    }
+
+    // Jump from syllabus notes directly to Case Card
+    function jumpToCase(caseName) {
+        switchTab('cases');
+        
+        // Clear filter to show all cases
+        state.activeCaseFilter = "All";
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            if (btn.textContent === "All") btn.classList.add('active');
+            else btn.classList.remove('active');
+        });
+        renderCaseCards();
+
+        const targetId = `case-${caseName.replace(/\s+/g, '-')}`;
+        const card = document.getElementById(targetId);
+        if (card) {
+            setTimeout(() => {
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                card.style.borderColor = 'var(--primary)';
+                card.style.boxShadow = '0 0 0 4px var(--primary-light)';
+                
+                setTimeout(() => {
+                    card.style.borderColor = 'var(--card-border)';
+                    card.style.boxShadow = 'none';
+                }, 2000);
+            }, 100);
+        }
+    }
+
+    // Quiz State Variables
+    let quizState = {
+        currentQuestionIdx: 0,
+        score: 0,
+        answers: [], // holds true/false for each question
+        answered: false
+    };
+
+    // Quiz Functions
+    function initQuiz() {
+        quizState.currentQuestionIdx = 0;
+        quizState.score = 0;
+        quizState.answers = [];
+        quizState.answered = false;
+        
+        document.getElementById('quiz-active-screen').style.display = 'block';
+        document.getElementById('quiz-result-screen').style.display = 'none';
+        showQuizQuestion();
+    }
+
+    function showQuizQuestion() {
+        const question = window.QUIZ_QUESTIONS_DATA[quizState.currentQuestionIdx];
+        document.getElementById('quiz-question-number').textContent = `Question ${quizState.currentQuestionIdx + 1} of ${window.QUIZ_QUESTIONS_DATA.length}`;
+        document.getElementById('quiz-score-tracker').textContent = `Score: ${quizState.score} / ${quizState.currentQuestionIdx}`;
+        document.getElementById('quiz-question-text').textContent = question.question;
+        
+        // Progress bar updates
+        const progressPercent = (quizState.currentQuestionIdx / window.QUIZ_QUESTIONS_DATA.length) * 100;
+        document.getElementById('quiz-progress-fill').style.width = `${progressPercent}%`;
+
+        const optionsContainer = document.getElementById('quiz-options-container');
+        optionsContainer.innerHTML = '';
+        
+        question.options.forEach((opt, idx) => {
+            const btn = document.createElement('button');
+            btn.className = 'quiz-option';
+            btn.innerHTML = `<span>${opt}</span><span class="quiz-option-status" id="opt-status-${idx}"></span>`;
+            btn.onclick = () => selectQuizOption(idx);
+            optionsContainer.appendChild(btn);
+        });
+
+        // Hide explanation and next button
+        document.getElementById('quiz-explanation-box').style.display = 'none';
+        document.getElementById('quiz-next-btn').disabled = true;
+        quizState.answered = false;
+    }
+
+    function selectQuizOption(selectedIdx) {
+        if (quizState.answered) return;
+        quizState.answered = true;
+
+        const question = window.QUIZ_QUESTIONS_DATA[quizState.currentQuestionIdx];
+        const options = document.querySelectorAll('.quiz-option');
+        
+        // Mark correct and incorrect options
+        options.forEach((optBtn, idx) => {
+            optBtn.style.cursor = 'default';
+            if (idx === question.correct) {
+                optBtn.classList.add('correct');
+                document.getElementById(`opt-status-${idx}`).textContent = '✓';
+            } else if (idx === selectedIdx) {
+                optBtn.classList.add('incorrect');
+                document.getElementById(`opt-status-${idx}`).textContent = '✗';
+            }
+        });
+
+        const isCorrect = selectedIdx === question.correct;
+        if (isCorrect) {
+            quizState.score++;
+        }
+
+        // Show Explanation Box
+        const expBox = document.getElementById('quiz-explanation-box');
+        const expTitle = document.getElementById('quiz-explanation-title');
+        const expText = document.getElementById('quiz-explanation-text');
+        
+        expBox.className = 'quiz-explanation-box ' + (isCorrect ? 'correct-exp' : 'incorrect-exp');
+        expTitle.textContent = isCorrect ? 'Correct! ✓' : 'Incorrect ✗';
+        expText.textContent = question.explanation;
+        expBox.style.display = 'block';
+
+        // Enable Next button
+        document.getElementById('quiz-next-btn').disabled = false;
+        
+        // Track stats score
+        document.getElementById('quiz-score-tracker').textContent = `Score: ${quizState.score} / ${quizState.currentQuestionIdx + 1}`;
+    }
+
+    function quizNextQuestion() {
+        quizState.currentQuestionIdx++;
+        
+        if (quizState.currentQuestionIdx < window.QUIZ_QUESTIONS_DATA.length) {
+            showQuizQuestion();
+        } else {
+            showQuizResults();
+        }
+    }
+
+    function showQuizResults() {
+        document.getElementById('quiz-active-screen').style.display = 'none';
+        
+        const finalPercent = Math.round((quizState.score / window.QUIZ_QUESTIONS_DATA.length) * 100);
+        document.getElementById('quiz-final-score').textContent = `${finalPercent}%`;
+
+        // Update high score in local storage
+        if (state.quizHighScore === null || finalPercent > state.quizHighScore) {
+            state.quizHighScore = finalPercent;
+            localStorage.setItem('quizHighScore', state.quizHighScore);
+            updateMasteryUI();
+            updateStatsUI();
+        }
+
+        const title = document.getElementById('quiz-result-title');
+        const desc = document.getElementById('quiz-result-desc');
+
+        if (finalPercent >= 80) {
+            title.textContent = 'Excellent Job! 🏆';
+            desc.textContent = `You scored ${quizState.score} out of ${window.QUIZ_QUESTIONS_DATA.length} (${finalPercent}%). You are fully prepared for the exam!`;
+        } else if (finalPercent >= 50) {
+            title.textContent = 'Good Effort! 👍';
+            desc.textContent = `You scored ${quizState.score} out of ${window.QUIZ_QUESTIONS_DATA.length} (${finalPercent}%). A bit more review and you will master it.`;
+        } else {
+            title.textContent = 'Needs Review 📖';
+            desc.textContent = `You scored ${quizState.score} out of ${window.QUIZ_QUESTIONS_DATA.length} (${finalPercent}%). Go back to the Study Guide and try again!`;
+        }
+
+        document.getElementById('quiz-result-screen').style.display = 'block';
+    }
+
+    function restartQuiz() {
+        initQuiz();
+    }
+
+    // Reset Progress
+    function resetAllProgress() {
+        if (confirm("Are you sure you want to reset all your learning progress? This includes read topics, quiz scores, and achievements.")) {
+            localStorage.removeItem('readSections');
+            localStorage.removeItem('flippedCards');
+            localStorage.removeItem('quizHighScore');
+            
+            state.readSections = [];
+            state.flippedCards.clear();
+            state.quizHighScore = null;
+
+            // Reset mark read buttons
+            document.querySelectorAll('.btn-mark').forEach(btn => {
+                btn.classList.remove('read');
+                btn.textContent = 'Mark as Read';
+            });
+
+            updateMasteryUI();
+            updateStatsUI();
+            
+            alert("Progress has been fully reset.");
+        }
+    }
+
+    // --- EXAM PREP HUB CONTROLS ---
+
+    // Switch between Sub Tabs (Past Paper vs Predictions)
+    function switchSubTab(subTabId) {
+        document.querySelectorAll('.sub-tab-btn').forEach(btn => {
+            btn.classList.remove('active');
+            btn.setAttribute('aria-selected', 'false');
+        });
+        document.querySelectorAll('.sub-tab-content').forEach(content => {
+            content.classList.remove('active');
+        });
+        
+        const activeBtn = document.getElementById(`subtab-${subTabId}-btn`);
+        if (activeBtn) {
+            activeBtn.classList.add('active');
+            activeBtn.setAttribute('aria-selected', 'true');
+        }
+        
+        const activeContent = document.getElementById(`subtab-${subTabId}`);
+        if (activeContent) {
+            activeContent.classList.add('active');
+        }
+    }
+
+    // Render TUK Past Paper Accordion list
+    function renderPastPaper() {
+        const container = document.getElementById('past-paper-accordion-container');
+        if (!container) return;
+        container.innerHTML = '';
+
+        window.PAST_PAPER_DATA.forEach(item => {
+            const accItem = document.createElement('div');
+            accItem.className = 'accordion-item';
+            accItem.id = `acc-${item.id}`;
+            accItem.innerHTML = `
+                <div class="accordion-header" onclick="toggleAccordion('${item.id}')">
+                   <div class="accordion-header-left">
+                       <span class="accordion-label">${item.label}</span>
+                       <span class="accordion-title-text">${item.title}</span>
+                   </div>
+                   <div class="accordion-meta">
+                       <span class="accordion-marks">${item.marks}</span>
+                       <svg class="accordion-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                   </div>
+                </div>
+                <div class="accordion-content" id="content-${item.id}">
+                   <div class="accordion-body">
+                       <div class="question-text-box">
+                           <strong>Question:</strong> ${item.question}
+                       </div>
+                       <div class="answer-heading">
+                           <svg class="svg-icon" viewBox="0 0 24 24" style="fill: var(--primary); width: 18px; height: 18px; margin-right: 6px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"></path></svg>
+                           Model Answer:
+                       </div>
+                       <div class="answer-text">
+                           ${item.modelAnswer}
+                       </div>
+                       <button class="btn-jump-notes" onclick="jumpToSection('${item.targetSection}')">
+                           Go to Study Guide Topic ➔
+                       </button>
+                   </div>
+                </div>
+            `;
+            container.appendChild(accItem);
+        });
+    }
+
+    // Toggle Accordion open/close
+    function toggleAccordion(id) {
+        const item = document.getElementById(`acc-${id}`);
+        const content = document.getElementById(`content-${id}`);
+        if (!item || !content) return;
+
+        const isActive = item.classList.contains('active');
+        
+        // Close all other accordions first
+        document.querySelectorAll('.accordion-item').forEach(acc => {
+            acc.classList.remove('active');
+            const accContent = acc.querySelector('.accordion-content');
+            if (accContent) accContent.style.maxHeight = null;
+        });
+
+        if (!isActive) {
+            item.classList.add('active');
+            content.style.maxHeight = content.scrollHeight + "px";
+        }
+    }
+
+    // Render Wednesday Predicted Exam Questions
+    function renderPredictions() {
+        const container = document.getElementById('predictions-cards-container');
+        if (!container) return;
+        container.innerHTML = '';
+
+        window.PREDICTED_QUESTIONS_DATA.forEach(item => {
+            const card = document.createElement('article');
+            card.className = 'prediction-card';
+            card.id = `pred-${item.id}`;
+            card.innerHTML = `
+               <div class="prediction-header">
+                   <h3 class="prediction-title">${item.title}</h3>
+                   <span class="accordion-label" style="background-color: var(--accent-light); color: var(--accent);">High Yield</span>
+               </div>
+               <div class="prediction-reasoning-box">
+                   <strong>Examiner Rationale:</strong> ${item.predictionReasoning}
+               </div>
+               <div class="question-text-box" style="border-left: 4px solid var(--primary);">
+                   <strong>Predicted Question:</strong> ${item.question}
+               </div>
+               <div class="answer-heading">
+                   <svg class="svg-icon" viewBox="0 0 24 24" style="fill: var(--primary); width: 18px; height: 18px; margin-right: 6px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"></path></svg>
+                   Suggested Model Answer:
+               </div>
+               <div class="answer-text">
+                   ${item.answer}
+               </div>
+               <button class="btn-jump-notes" onclick="jumpToSection('${item.targetSection}')" style="margin-top: 20px;">
+                   Review Core Topic Notes ➔
+               </button>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    // Switch to Study Guide, Scroll to targeted section, and apply glowing border animation
+    function jumpToSection(secId) {
+        // Switch to the guide tab
+        switchTab('guide');
+        
+        // Locate target element
+        const card = document.getElementById(secId);
+        if (card) {
+            // Wait slightly for the tab transition/rendering to be active
+            setTimeout(() => {
+                card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                
+                // Trigger glow animation class
+                card.classList.add('glow-highlight');
+                
+                // Clear the class after animation completes (2s)
+                setTimeout(() => {
+                    card.classList.remove('glow-highlight');
+                }, 2000);
+            }, 150);
+        }
+    }
+</script>
+
+</body>
+</html>
