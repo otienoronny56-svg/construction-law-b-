@@ -2466,6 +2466,28 @@
             box-shadow: var(--shadow);
             align-items: center;
             flex-wrap: wrap;
+            position: relative;
+            transition: var(--transition);
+        }
+        .banner-toggle-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            z-index: 10;
+        }
+        .banner-toggle-btn:hover {
+            background-color: var(--card-border);
+            color: var(--text-color);
         }
         .countdown-section {
             flex: 1;
@@ -2835,40 +2857,62 @@
 
     <!-- Revision Countdown & Daily Goals Banner -->
     <div class="countdown-goals-banner" id="countdown-goals-banner">
-        <div class="countdown-section">
-            <span class="countdown-label">⏱️ COUNTDOWN TO EXAM</span>
-            <div class="countdown-timer" id="countdown-timer">
-                <div class="timer-unit"><span id="timer-days">00</span><label>Days</label></div>
-                <div class="timer-unit"><span id="timer-hours">00</span><label>Hrs</label></div>
-                <div class="timer-unit"><span id="timer-mins">00</span><label>Mins</label></div>
-                <div class="timer-unit"><span id="timer-secs">00</span><label>Secs</label></div>
+        <!-- Toggle Button -->
+        <button class="banner-toggle-btn" onclick="toggleGoalsBanner()" aria-label="Toggle Goals Banner">
+            <svg class="svg-icon" id="banner-toggle-icon" viewBox="0 0 24 24" style="width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round;"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        </button>
+
+        <!-- Expanded Layout -->
+        <div id="banner-expanded-content" style="display: flex; width: 100%; gap: 24px; align-items: center; flex-wrap: wrap;">
+            <div class="countdown-section">
+                <span class="countdown-label">⏱️ COUNTDOWN TO EXAM</span>
+                <div class="countdown-timer" id="countdown-timer">
+                    <div class="timer-unit"><span id="timer-days">00</span><label>Days</label></div>
+                    <div class="timer-unit"><span id="timer-hours">00</span><label>Hrs</label></div>
+                    <div class="timer-unit"><span id="timer-mins">00</span><label>Mins</label></div>
+                    <div class="timer-unit"><span id="timer-secs">00</span><label>Secs</label></div>
+                </div>
+            </div>
+            <div class="divider-vertical"></div>
+            <div class="goals-section" style="flex: 2; min-width: 300px;">
+                <div class="goals-header">
+                    <span class="goals-title">🎯 Today's Revision Goals</span>
+                    <span class="goals-percentage" id="goals-percentage">0% Done</span>
+                </div>
+                <div class="goals-checklist">
+                    <label class="goal-item">
+                        <input type="checkbox" id="goal-read" disabled>
+                        <span class="goal-custom-box"></span>
+                        <span class="goal-text">Read 2 Study Guide sections (<span id="goal-read-count">0/2</span>)</span>
+                    </label>
+                    <label class="goal-item">
+                        <input type="checkbox" id="goal-flip" disabled>
+                        <span class="goal-custom-box"></span>
+                        <span class="goal-text">Flip 5 flashcards (<span id="goal-flip-count">0/5</span>)</span>
+                    </label>
+                    <label class="goal-item">
+                        <input type="checkbox" id="goal-quiz" disabled>
+                        <span class="goal-custom-box"></span>
+                        <span class="goal-text">Take 1 practice quiz (<span id="goal-quiz-count">0/1</span>)</span>
+                    </label>
+                </div>
+                <div class="goals-progress-container">
+                    <div class="goals-progress-fill" id="goals-progress-fill"></div>
+                </div>
             </div>
         </div>
-        <div class="divider-vertical"></div>
-        <div class="goals-section">
-            <div class="goals-header">
-                <span class="goals-title">🎯 Today's Revision Goals</span>
-                <span class="goals-percentage" id="goals-percentage">0% Done</span>
+
+        <!-- Collapsed Layout (Initially Hidden) -->
+        <div class="banner-collapsed-summary" id="banner-collapsed-summary" style="display: none; width: 100%; justify-content: space-between; align-items: center; cursor: pointer; padding: 4px 12px;" onclick="toggleGoalsBanner()">
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="font-weight: 700; font-size: 0.9rem;">⏱️ Exam Countdown & Goals</span>
+                <span class="timer-mini-badge" id="timer-mini-badge" style="font-size: 0.8rem; background-color: var(--primary-light); color: var(--primary); padding: 2px 8px; border-radius: 6px; font-weight: 700;">00d 00h 00m</span>
             </div>
-            <div class="goals-checklist">
-                <label class="goal-item">
-                    <input type="checkbox" id="goal-read" disabled>
-                    <span class="goal-custom-box"></span>
-                    <span class="goal-text">Read 2 Study Guide sections (<span id="goal-read-count">0/2</span>)</span>
-                </label>
-                <label class="goal-item">
-                    <input type="checkbox" id="goal-flip" disabled>
-                    <span class="goal-custom-box"></span>
-                    <span class="goal-text">Flip 5 flashcards (<span id="goal-flip-count">0/5</span>)</span>
-                </label>
-                <label class="goal-item">
-                    <input type="checkbox" id="goal-quiz" disabled>
-                    <span class="goal-custom-box"></span>
-                    <span class="goal-text">Take 1 practice quiz (<span id="goal-quiz-count">0/1</span>)</span>
-                </label>
-            </div>
-            <div class="goals-progress-container">
-                <div class="goals-progress-fill" id="goals-progress-fill"></div>
+            <div style="display: flex; align-items: center; gap: 12px; margin-right: 24px;">
+                <span id="goals-collapsed-progress" style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">0% Done</span>
+                <div style="width: 100px; height: 6px; background-color: var(--card-border); border-radius: 3px; overflow: hidden; margin-left: 8px;">
+                    <div id="goals-collapsed-progress-fill" style="width: 0%; height: 100%; background: linear-gradient(90deg, var(--primary), var(--secondary)); transition: width 0.3s;"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -4674,7 +4718,10 @@
             const distance = targetDate - now;
 
             if (distance < 0) {
-                document.getElementById('countdown-timer').innerHTML = "<div style='font-size:1.1rem; font-weight:700; color:var(--error);'>EXAM HAS COMMENCED! ⚖️</div>";
+                const timerEl = document.getElementById('countdown-timer');
+                if (timerEl) timerEl.innerHTML = "<div style='font-size:1.1rem; font-weight:700; color:var(--error);'>EXAM HAS COMMENCED! ⚖️</div>";
+                const miniBadge = document.getElementById('timer-mini-badge');
+                if (miniBadge) miniBadge.textContent = "EXAM COMMENCED! ⚖️";
                 return;
             }
 
@@ -4683,10 +4730,20 @@
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            document.getElementById('timer-days').textContent = days.toString().padStart(2, '0');
-            document.getElementById('timer-hours').textContent = hours.toString().padStart(2, '0');
-            document.getElementById('timer-mins').textContent = minutes.toString().padStart(2, '0');
-            document.getElementById('timer-secs').textContent = seconds.toString().padStart(2, '0');
+            const timerDays = document.getElementById('timer-days');
+            const timerHours = document.getElementById('timer-hours');
+            const timerMins = document.getElementById('timer-mins');
+            const timerSecs = document.getElementById('timer-secs');
+
+            if (timerDays) timerDays.textContent = days.toString().padStart(2, '0');
+            if (timerHours) timerHours.textContent = hours.toString().padStart(2, '0');
+            if (timerMins) timerMins.textContent = minutes.toString().padStart(2, '0');
+            if (timerSecs) timerSecs.textContent = seconds.toString().padStart(2, '0');
+
+            const miniBadge = document.getElementById('timer-mini-badge');
+            if (miniBadge) {
+                miniBadge.textContent = `${days}d ${hours}h ${minutes}m`;
+            }
         }
 
         updateTimer();
@@ -4716,6 +4773,27 @@
     function trackQuizGoal() {
         sessionGoals.quizDone = 1;
         updateGoalsUI();
+    }
+
+    function toggleGoalsBanner() {
+        const banner = document.getElementById('countdown-goals-banner');
+        const expanded = document.getElementById('banner-expanded-content');
+        const collapsed = document.getElementById('banner-collapsed-summary');
+        const icon = document.getElementById('banner-toggle-icon');
+        
+        if (!banner || !expanded || !collapsed || !icon) return;
+        
+        if (expanded.style.display === 'none') {
+            expanded.style.display = 'flex';
+            collapsed.style.display = 'none';
+            icon.innerHTML = '<polyline points="18 15 12 9 6 15"></polyline>';
+            banner.style.padding = '20px';
+        } else {
+            expanded.style.display = 'none';
+            collapsed.style.display = 'flex';
+            icon.innerHTML = '<polyline points="6 9 12 15 18 9"></polyline>';
+            banner.style.padding = '12px 20px';
+        }
     }
 
     function updateGoalsUI() {
@@ -4749,6 +4827,12 @@
         const progressEl = document.getElementById('goals-progress-fill');
         if (percentageEl) percentageEl.textContent = `${percent}% Done`;
         if (progressEl) progressEl.style.width = `${percent}%`;
+
+        // Update collapsed summary UI elements
+        const percentageCollapsedEl = document.getElementById('goals-collapsed-progress');
+        const progressCollapsedEl = document.getElementById('goals-collapsed-progress-fill');
+        if (percentageCollapsedEl) percentageCollapsedEl.textContent = `${percent}% Done`;
+        if (progressCollapsedEl) progressCollapsedEl.style.width = `${percent}%`;
     }
 
     // Cheat Sheet Printing
