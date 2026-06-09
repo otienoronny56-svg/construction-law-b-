@@ -3268,6 +3268,13 @@
             <h2 style="font-size: 1.8rem; margin-bottom: 8px;">Kenyan Laws & Articles Reference Directory</h2>
             <p style="color: var(--text-muted); margin-bottom: 24px;">Quick lookups of all Constitution Articles, Legislative Caps, and Sections cited in the study notes.</p>
             
+            <div style="margin-bottom: 24px;">
+                <button class="btn btn-primary" onclick="printCheatSheet()" id="btn-print-cheat-sheet">
+                    <svg class="svg-icon" viewBox="0 0 24 24" style="fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; width:1.1rem; height:1.1rem; vertical-align:middle; margin-right:4px;"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                    Print Last-Minute Revision Cheat Sheet
+                </button>
+            </div>
+            
             <div class="ref-grid" id="ref-cards-container">
                 <!-- Reference cards generated dynamically -->
             </div>
@@ -3755,11 +3762,12 @@
             state.readSections.push(secId);
             btn.classList.add('read');
             btn.textContent = 'Read ✓';
-            trackReadGoal(secId);
+            trackReadGoal(secId, true);
         } else {
             state.readSections.splice(idx, 1);
             btn.classList.remove('read');
             btn.textContent = 'Mark as Read';
+            trackReadGoal(secId, false);
         }
         localStorage.setItem('readSections', JSON.stringify(state.readSections));
         updateMasteryUI();
@@ -3891,8 +3899,10 @@
             localStorage.setItem('flippedCards', JSON.stringify(Array.from(state.flippedCards)));
             updateMasteryUI();
             updateStatsUI();
-            trackFlipGoal();
         }
+        
+        // Track session-specific flip goal
+        trackFlipGoal(state.currentCardIdx);
     }
 
     function nextCard() {
@@ -4494,6 +4504,11 @@
             li.appendChild(btn);
             list.appendChild(li);
         });
+        
+        // Pre-select the first scenario by default
+        if (IRAC_SCENARIOS.length > 0) {
+            selectIracScenario(IRAC_SCENARIOS[0].id);
+        }
     }
 
     function selectIracScenario(id) {
@@ -4679,18 +4694,22 @@
     }
 
     let sessionGoals = {
-        readCount: 0,
-        flipCount: 0,
+        readSections: new Set(),
+        flippedCards: new Set(),
         quizDone: 0
     };
 
-    function trackReadGoal(secId) {
-        sessionGoals.readCount++;
+    function trackReadGoal(secId, isRead) {
+        if (isRead) {
+            sessionGoals.readSections.add(secId);
+        } else {
+            sessionGoals.readSections.delete(secId);
+        }
         updateGoalsUI();
     }
 
-    function trackFlipGoal() {
-        sessionGoals.flipCount++;
+    function trackFlipGoal(cardIdx) {
+        sessionGoals.flippedCards.add(cardIdx);
         updateGoalsUI();
     }
 
@@ -4708,8 +4727,8 @@
         const flipCountEl = document.getElementById('goal-flip-count');
         const quizCountEl = document.getElementById('goal-quiz-count');
 
-        const readVal = Math.min(sessionGoals.readCount, 2);
-        const flipVal = Math.min(sessionGoals.flipCount, 5);
+        const readVal = Math.min(sessionGoals.readSections.size, 2);
+        const flipVal = Math.min(sessionGoals.flippedCards.size, 5);
         const quizVal = Math.min(sessionGoals.quizDone, 1);
 
         if (readCountEl) readCountEl.textContent = `${readVal}/2`;
