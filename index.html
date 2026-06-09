@@ -2453,6 +2453,349 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Countdown and Goals Banner Styling */
+        .countdown-goals-banner {
+            display: flex;
+            background: linear-gradient(135deg, var(--card-bg), var(--bg-color));
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 24px;
+            gap: 24px;
+            box-shadow: var(--shadow);
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .countdown-section {
+            flex: 1;
+            min-width: 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        .countdown-label {
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+        .countdown-timer {
+            display: flex;
+            gap: 12px;
+        }
+        .timer-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            width: 55px;
+            padding: 6px 0;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+        }
+        .timer-unit span {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+        .timer-unit label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+        .divider-vertical {
+            width: 1px;
+            height: 80px;
+            background-color: var(--card-border);
+        }
+        @media (max-width: 768px) {
+            .divider-vertical {
+                display: none;
+            }
+            .countdown-goals-banner {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+        .goals-section {
+            flex: 2;
+            min-width: 280px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+        }
+        .goals-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .goals-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+        .goals-percentage {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--success);
+        }
+        .goals-checklist {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .goal-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: default;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            user-select: none;
+        }
+        .goal-item input {
+            display: none;
+        }
+        .goal-custom-box {
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--card-border);
+            border-radius: 4px;
+            display: inline-block;
+            position: relative;
+            background-color: var(--card-bg);
+            transition: var(--transition);
+        }
+        .goal-item input:checked + .goal-custom-box {
+            background-color: var(--success);
+            border-color: var(--success);
+        }
+        .goal-item input:checked + .goal-custom-box::after {
+            content: "✓";
+            color: #fff;
+            font-size: 11px;
+            font-weight: bold;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .goal-item input:checked ~ .goal-text {
+            text-decoration: line-through;
+            color: var(--text-muted);
+            opacity: 0.7;
+        }
+        .goals-progress-container {
+            height: 8px;
+            background-color: var(--card-border);
+            border-radius: 4px;
+            overflow: hidden;
+            width: 100%;
+            margin-top: 4px;
+        }
+        .goals-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--success), #059669);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Matcher Game Tiles */
+        .matcher-tile {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-size: 0.9rem;
+            font-weight: 550;
+            color: var(--text-color);
+            cursor: pointer;
+            text-align: left;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            user-select: none;
+        }
+        .matcher-tile:hover {
+            border-color: var(--primary);
+            transform: translateY(-1px);
+        }
+        .matcher-tile.active {
+            border-color: var(--primary);
+            background-color: var(--primary-light);
+            color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+        .matcher-tile.success {
+            border-color: var(--success);
+            background-color: var(--success-light);
+            color: var(--success);
+            opacity: 0.7;
+        }
+        .matcher-tile.error {
+            border-color: var(--error);
+            background-color: var(--error-light);
+            color: var(--error);
+            animation: shake 0.3s ease;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-4px); }
+            75% { transform: translateX(4px); }
+        }
+
+        /* Sub Navigation Tabs inside tabs */
+        .sub-tab-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        .sub-tab-btn:hover {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        .sub-tab-btn.active {
+            background-color: var(--primary-light);
+            color: var(--primary);
+        }
+
+        /* IRAC Section Cards Styling */
+        .irac-section-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: var(--transition);
+            text-align: left;
+        }
+        .issue-border { border-left: 5px solid #3b82f6; }
+        .rule-border { border-left: 5px solid #a855f7; }
+        .application-border { border-left: 5px solid #eab308; }
+        .conclusion-border { border-left: 5px solid #10b981; }
+
+        .irac-section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+        .irac-letter {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            color: #fff;
+            font-weight: 800;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+        .bg-issue { background-color: #3b82f6; }
+        .bg-rule { background-color: #a855f7; }
+        .bg-application { background-color: #eab308; }
+        .bg-conclusion { background-color: #10b981; }
+
+        .irac-section-body {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .irac-guide-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .irac-draft-area textarea {
+            width: 100%;
+            height: 80px;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid var(--card-border);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.92rem;
+            resize: vertical;
+            transition: var(--transition);
+        }
+        .irac-draft-area textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        .irac-model-answer {
+            background-color: var(--bg-color);
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 0.9rem;
+            border: 1px solid var(--card-border);
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        /* Wizard Step CSS */
+        .wizard-step {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: var(--card-bg);
+            border: 2px solid var(--card-border);
+            color: var(--text-muted);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            z-index: 2;
+            transition: var(--transition);
+            user-select: none;
+        }
+        .wizard-step.active {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            color: #fff;
+        }
+        .wizard-step.completed {
+            background-color: var(--success);
+            border-color: var(--success);
+            color: #fff;
+        }
+        .solver-btn-choice {
+            text-align: left !important;
+            padding: 16px 20px !important;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4px !important;
+            box-shadow: var(--shadow);
+            border-radius: 12px;
+        }
+        .solver-btn-choice strong {
+            font-size: 1rem;
+            color: var(--text-color);
+        }
+        .solver-btn-choice span {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
     </style>
 </head>
 <body>
@@ -2488,6 +2831,46 @@
             <div id="mastery-progress-fill" style="height: 100%; background: linear-gradient(90deg, #10b981, #059669); width: 0%; transition: width 0.4s ease;"></div>
         </div>
         <span id="mastery-percent" class="mastery-percent-value">0%</span>
+    </div>
+
+    <!-- Revision Countdown & Daily Goals Banner -->
+    <div class="countdown-goals-banner" id="countdown-goals-banner">
+        <div class="countdown-section">
+            <span class="countdown-label">⏱️ COUNTDOWN TO EXAM</span>
+            <div class="countdown-timer" id="countdown-timer">
+                <div class="timer-unit"><span id="timer-days">00</span><label>Days</label></div>
+                <div class="timer-unit"><span id="timer-hours">00</span><label>Hrs</label></div>
+                <div class="timer-unit"><span id="timer-mins">00</span><label>Mins</label></div>
+                <div class="timer-unit"><span id="timer-secs">00</span><label>Secs</label></div>
+            </div>
+        </div>
+        <div class="divider-vertical"></div>
+        <div class="goals-section">
+            <div class="goals-header">
+                <span class="goals-title">🎯 Today's Revision Goals</span>
+                <span class="goals-percentage" id="goals-percentage">0% Done</span>
+            </div>
+            <div class="goals-checklist">
+                <label class="goal-item">
+                    <input type="checkbox" id="goal-read" disabled>
+                    <span class="goal-custom-box"></span>
+                    <span class="goal-text">Read 2 Study Guide sections (<span id="goal-read-count">0/2</span>)</span>
+                </label>
+                <label class="goal-item">
+                    <input type="checkbox" id="goal-flip" disabled>
+                    <span class="goal-custom-box"></span>
+                    <span class="goal-text">Flip 5 flashcards (<span id="goal-flip-count">0/5</span>)</span>
+                </label>
+                <label class="goal-item">
+                    <input type="checkbox" id="goal-quiz" disabled>
+                    <span class="goal-custom-box"></span>
+                    <span class="goal-text">Take 1 practice quiz (<span id="goal-quiz-count">0/1</span>)</span>
+                </label>
+            </div>
+            <div class="goals-progress-container">
+                <div class="goals-progress-fill" id="goals-progress-fill"></div>
+            </div>
+        </div>
     </div>
 
     <!-- Navigation Tabs -->
@@ -2556,11 +2939,51 @@
 
     <!-- TAB 2: CASE LAW LIBRARY -->
     <section class="tab-content" id="tab-cases">
-        <div class="filter-container" id="case-filters-container">
-            <!-- Filter buttons generated dynamically -->
+        <div class="sub-nav-tabs" style="display: flex; gap: 8px; margin-bottom: 24px; border-bottom: 1px solid var(--card-border); padding-bottom: 12px;">
+            <button class="sub-tab-btn active" id="case-list-tab-btn" onclick="switchCaseSubTab('list')">Case Library</button>
+            <button class="sub-tab-btn" id="case-matcher-tab-btn" onclick="switchCaseSubTab('matcher')">Case Matcher Game</button>
         </div>
-        <div class="case-grid" id="case-cards-container">
-            <!-- Case cards generated dynamically -->
+
+        <!-- Subtab 1: Case list library -->
+        <div id="case-subtab-list" class="case-subtab active">
+            <div class="filter-container" id="case-filters-container">
+                <!-- Filter buttons generated dynamically -->
+            </div>
+            <div class="case-grid" id="case-cards-container">
+                <!-- Case cards generated dynamically -->
+            </div>
+        </div>
+
+        <!-- Subtab 2: Case Matcher Game -->
+        <div id="case-subtab-matcher" class="case-subtab" style="display: none;">
+            <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 24px; text-align: center; box-shadow: var(--shadow); margin-bottom: 24px;">
+                <h3 style="font-size: 1.4rem; margin-bottom: 8px;">Case Citation & Principle Matcher</h3>
+                <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 20px;">Test your knowledge! Match each case name with its correct legal principle. Select a Case card on the left, then click its matching Principle card on the right.</p>
+                
+                <div style="display: flex; justify-content: center; gap: 20px; align-items: center; margin-bottom: 20px; flex-wrap: wrap;">
+                    <div style="font-size: 1rem; font-weight: 700; color: var(--primary);">Time: <span id="matcher-time">00:00</span></div>
+                    <div style="font-size: 1rem; font-weight: 700; color: var(--success);">Matches: <span id="matcher-score">0 / 4</span></div>
+                    <div style="font-size: 1rem; font-weight: 700; color: var(--accent);">Moves: <span id="matcher-moves">0</span></div>
+                    <button class="btn btn-primary" onclick="startCaseMatcher()">Restart Game</button>
+                </div>
+
+                <div class="matcher-game-layout" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 800px; margin: 0 auto;">
+                    <!-- Cases List Column -->
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        <h4 style="font-size: 0.9rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; text-align: left;">Cases</h4>
+                        <div id="matcher-cases-col" style="display: flex; flex-direction: column; gap: 10px;"></div>
+                    </div>
+                    <!-- Principles List Column -->
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        <h4 style="font-size: 0.9rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; text-align: left;">Legal Principles</h4>
+                        <div id="matcher-principles-col" style="display: flex; flex-direction: column; gap: 10px;"></div>
+                    </div>
+                </div>
+
+                <div id="matcher-win-message" style="display: none; margin-top: 24px; background: var(--success-light); border: 1px solid var(--success); color: var(--success); border-radius: 12px; padding: 16px; font-weight: 700; animation: fadeIn 0.4s ease-out;">
+                    🎉 Brilliant! You matched all citations correctly in <span id="matcher-win-time">0</span> seconds and <span id="matcher-win-moves">0</span> moves!
+                </div>
+            </div>
         </div>
     </section>
 
@@ -2653,6 +3076,12 @@
                 <button class="sub-tab-btn" id="subtab-predictions-btn" onclick="switchSubTab('predictions')" role="tab" aria-selected="false">
                     Wednesday Exam Predictions
                 </button>
+                <button class="sub-tab-btn" id="subtab-irac-btn" onclick="switchSubTab('irac')" role="tab" aria-selected="false">
+                    IRAC Answer Builder
+                </button>
+                <button class="sub-tab-btn" id="subtab-solver-btn" onclick="switchSubTab('solver')" role="tab" aria-selected="false">
+                    Scenario Solver
+                </button>
             </div>
 
             <!-- Sub Tab 1: Past Paper Analysis -->
@@ -2666,6 +3095,168 @@
             <div class="sub-tab-content" id="subtab-predictions">
                 <div class="predictions-grid" id="predictions-cards-container">
                     <!-- Dynamic predicted question items go here -->
+                </div>
+            </div>
+
+            <!-- Sub Tab 3: IRAC Answer Builder -->
+            <div class="sub-tab-content" id="subtab-irac">
+                <div style="display: grid; grid-template-columns: 300px 1fr; gap: 24px; margin-top: 10px;">
+                    <!-- Topic selection sidebar -->
+                    <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 16px; height: fit-content; box-shadow: var(--shadow);">
+                        <h4 style="font-size: 0.85rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; margin-bottom: 12px; font-weight: 700;">IRAC Practice Scenarios</h4>
+                        <ul style="list-style: none; display: flex; flex-direction: column; gap: 6px;" id="irac-scenario-list">
+                            <!-- Populated dynamically -->
+                        </ul>
+                    </div>
+                    <!-- IRAC Editor Worksheet -->
+                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                        <div id="irac-card-header" style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow);">
+                            <h3 id="irac-scenario-title" style="font-size: 1.4rem; color: var(--text-color); margin-bottom: 6px;">Select a Scenario to Begin</h3>
+                            <p id="irac-scenario-prompt" style="color: var(--text-muted); font-size: 0.95rem;">Practice drafting legal answers using the IRAC (Issue, Rule, Application, Conclusion) framework.</p>
+                        </div>
+                        
+                        <!-- IRAC Interactive Cards -->
+                        <div class="irac-grid" style="display: flex; flex-direction: column; gap: 16px;">
+                            <!-- Issue Section -->
+                            <div class="irac-section-card issue-border">
+                                <div class="irac-section-title">
+                                    <span class="irac-letter bg-issue">I</span>
+                                    <span>ISSUE (Identify the Legal Question)</span>
+                                </div>
+                                <div class="irac-section-body">
+                                    <div class="irac-guide-text" id="irac-issue-guide">What is the legal problem in the scenario?</div>
+                                    <div class="irac-draft-area">
+                                        <textarea id="irac-issue-draft" placeholder="Type your answer here..." oninput="updateIracProgress()"></textarea>
+                                    </div>
+                                    <div class="irac-model-answer" id="irac-issue-model-box" style="display: none;">
+                                        <strong>Model Output:</strong>
+                                        <div id="irac-issue-model"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Rule Section -->
+                            <div class="irac-section-card rule-border">
+                                <div class="irac-section-title">
+                                    <span class="irac-letter bg-rule">R</span>
+                                    <span>RULE (Cite relevant Case Law or Statute Section)</span>
+                                </div>
+                                <div class="irac-section-body">
+                                    <div class="irac-guide-text" id="irac-rule-guide">What laws or cases govern this issue?</div>
+                                    <div class="irac-draft-area">
+                                        <textarea id="irac-rule-draft" placeholder="Type your answer here..." oninput="updateIracProgress()"></textarea>
+                                    </div>
+                                    <div class="irac-model-answer" id="irac-rule-model-box" style="display: none;">
+                                        <strong>Model Output:</strong>
+                                        <div id="irac-rule-model"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Application Section -->
+                            <div class="irac-section-card application-border">
+                                <div class="irac-section-title">
+                                    <span class="irac-letter bg-application">A</span>
+                                    <span>APPLICATION (Apply the Rule to the facts of the Scenario)</span>
+                                </div>
+                                <div class="irac-section-body">
+                                    <div class="irac-guide-text" id="irac-app-guide">How does the law apply to this specific set of facts?</div>
+                                    <div class="irac-draft-area">
+                                        <textarea id="irac-app-draft" placeholder="Type your answer here..." oninput="updateIracProgress()"></textarea>
+                                    </div>
+                                    <div class="irac-model-answer" id="irac-app-model-box" style="display: none;">
+                                        <strong>Model Output:</strong>
+                                        <div id="irac-app-model"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Conclusion Section -->
+                            <div class="irac-section-card conclusion-border">
+                                <div class="irac-section-title">
+                                    <span class="irac-letter bg-conclusion">C</span>
+                                    <span>CONCLUSION (State the final legal decision)</span>
+                                </div>
+                                <div class="irac-section-body">
+                                    <div class="irac-guide-text" id="irac-conclusion-guide">What is the final decision or liability?</div>
+                                    <div class="irac-draft-area">
+                                        <textarea id="irac-conclusion-draft" placeholder="Type your answer here..." oninput="updateIracProgress()"></textarea>
+                                    </div>
+                                    <div class="irac-model-answer" id="irac-conclusion-model-box" style="display: none;">
+                                        <strong>Model Output:</strong>
+                                        <div id="irac-conclusion-model"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- IRAC Controls -->
+                        <div style="display: flex; justify-content: space-between; align-items: center; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow);">
+                            <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">Worksheet Progress: <span id="irac-progress-text">0% Completed</span></div>
+                            <div style="display: flex; gap: 10px;">
+                                <button class="btn" onclick="toggleIracModelAnswers()" id="irac-reveal-btn" disabled>Reveal Model Answer</button>
+                                <button class="btn btn-primary" onclick="resetIracWorksheet()">Clear Drafts</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sub Tab 4: Scenario Solver -->
+            <div class="sub-tab-content" id="subtab-solver">
+                <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); margin-top: 10px;">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 8px;">Interactive Legal Scenario Solver</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 24px;">Diagnose exam scenarios step-by-step to determine the applicable rules, case laws, and legal outcomes.</p>
+                    
+                    <div id="solver-wizard-box" style="max-width: 600px; margin: 0 auto;">
+                        <!-- Wizard step indicator -->
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; position: relative;">
+                            <div style="position: absolute; top: 50%; left: 0; right: 0; height: 3px; background-color: var(--card-border); z-index: 1;"></div>
+                            <div id="solver-step-progress" style="position: absolute; top: 50%; left: 0; width: 0%; height: 3px; background-color: var(--primary); z-index: 1; transition: width 0.3s ease;"></div>
+                            
+                            <div class="wizard-step active" id="wizard-step-1-indicator">1</div>
+                            <div class="wizard-step" id="wizard-step-2-indicator">2</div>
+                            <div class="wizard-step" id="wizard-step-3-indicator">3</div>
+                        </div>
+
+                        <!-- Step 1: Legal Area -->
+                        <div id="solver-step-1" class="wizard-content active">
+                            <h4 style="font-size: 1.1rem; margin-bottom: 12px; text-align: center;">Step 1: Select the broad legal area of the problem</h4>
+                            <div style="display: flex; flex-direction: column; gap: 12px;">
+                                <button class="btn solver-btn-choice" onclick="selectSolverArea('company')">
+                                    <strong>Company Law Issue</strong>
+                                    <span>Pre-incorporation, Corporate Veil, Ultra Vires, Turquand's Rule, Articles alteration.</span>
+                                </button>
+                                <button class="btn solver-btn-choice" onclick="selectSolverArea('partnership')">
+                                    <strong>Partnership Law Issue</strong>
+                                    <span>Partnership formation, partner liability, dissolution, disputes.</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Specific Fact Questions -->
+                        <div id="solver-step-2" class="wizard-content" style="display: none;">
+                            <h4 style="font-size: 1.1rem; margin-bottom: 12px; text-align: center;" id="solver-step-2-question">Step 2: Answer the key question about the facts</h4>
+                            <div id="solver-step-2-options" style="display: flex; flex-direction: column; gap: 12px;">
+                                <!-- Dynamically populated based on step 1 area choice -->
+                            </div>
+                            <button class="btn" style="margin-top: 20px; align-self: flex-start;" onclick="prevSolverStep()">
+                                Back
+                            </button>
+                        </div>
+
+                        <!-- Step 3: Legal Diagnosis & Outcome -->
+                        <div id="solver-step-3" class="wizard-content" style="display: none;">
+                            <div style="background-color: var(--primary-light); border-left: 5px solid var(--primary); border-radius: 12px; padding: 20px; text-align: left; margin-bottom: 20px;">
+                                <h4 style="color: var(--primary); font-size: 1.15rem; margin-bottom: 8px;">⚖️ Legal Opinion & Diagnosis</h4>
+                                <div id="solver-diagnosis-result" style="color: var(--text-color); font-size: 0.95rem; line-height: 1.5;"></div>
+                            </div>
+                            <div style="display: flex; gap: 12px; justify-content: center;">
+                                <button class="btn btn-primary" onclick="resetSolver()">Solve New Scenario</button>
+                                <button class="btn" onclick="prevSolverStep()">Back to Edit</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2878,6 +3469,9 @@
         initQuiz();
         updateMasteryUI();
         initAdminConsole();
+        initCountdownTimer();
+        renderIracScenarioList();
+        updateGoalsUI();
     });
 
     // Theme Toggle
@@ -3161,6 +3755,7 @@
             state.readSections.push(secId);
             btn.classList.add('read');
             btn.textContent = 'Read ✓';
+            trackReadGoal(secId);
         } else {
             state.readSections.splice(idx, 1);
             btn.classList.remove('read');
@@ -3296,6 +3891,7 @@
             localStorage.setItem('flippedCards', JSON.stringify(Array.from(state.flippedCards)));
             updateMasteryUI();
             updateStatsUI();
+            trackFlipGoal();
         }
     }
 
@@ -3506,6 +4102,7 @@
         }
 
         document.getElementById('quiz-result-screen').style.display = 'block';
+        trackQuizGoal(); // Trigger daily goal update!
     }
 
     function restartQuiz() {
@@ -3593,6 +4190,680 @@
                 modal.style.display = 'none';
             }, 300);
         }
+    }
+
+    // --- REVISION FEATURE SUITE DATA & FUNCTIONS ---
+    const IRAC_SCENARIOS = [
+        {
+            id: "Veil",
+            title: "Lifting the Corporate Veil",
+            prompt: "John sets up a company to compete with his former employer, violating a non-compete covenant he signed personally. He claims the company is a separate entity and can compete. The employer sues to lift the veil.",
+            issue: "Can an individual shield himself from a personal non-compete covenant by acting through a separate corporate entity?",
+            rule: "Generally, a company is a separate legal entity (<em>Salomon v Salomon</em>). However, the court will lift the corporate veil where the corporate structure is used as a sham or facade to evade an existing legal obligation (<em>Gilford Motor Co v Horne</em>, <em>Jones v Lipman</em>).",
+            app: "John was bound personally by a non-compete covenant. He formed the company specifically to breach this covenant while hiding behind the company's separate legal personality. The company was a mere sham used to evade his personal legal obligation.",
+            conclusion: "The court will lift the corporate veil, treat the company's acts as John's acts, and grant an injunction against both John and the company."
+        },
+        {
+            id: "Preinc",
+            title: "Pre-Incorporation Contracts",
+            prompt: "Mary signs an office lease contract 'on behalf of Apex Ltd' on May 1st. Apex Ltd is not registered until May 15th. In June, the company fails to pay rent. The landlord sues Mary personally.",
+            issue: "Is a promoter personally liable for a contract signed on behalf of a company prior to its incorporation?",
+            rule: "Under Common Law (<em>Kelner v Baxter</em>), a pre-incorporation contract is void, and the promoter is personally liable since a non-existent company cannot contract. Under Section 23 of the Kenyan Companies Act, a pre-incorporation contract binds the person who signed it personally unless there is an express agreement to the contrary.",
+            app: "Mary signed the lease for Apex Ltd when the company did not exist. There is no clause exempting her from liability. Therefore, the company could not ratify it, and she is bound.",
+            conclusion: "Mary is personally liable to pay the rent, and the landlord's lawsuit against her will succeed."
+        },
+        {
+            id: "Ultravires",
+            title: "Ultra Vires Transactions",
+            prompt: "A company's Articles specify it can only operate 'quantity surveying activities'. The directors sign a contract to build a swimming pool. The company refuses to pay the builder, claiming the contract is ultra vires.",
+            issue: "Is a contract signed by directors for a purpose outside the company's articles binding on the company?",
+            rule: "At common law (<em>Ashbury Railway Carriage v Riche</em>), ultra vires contracts are void. However, under Section 34 of the Kenyan Companies Act, the validity of an act done by a company shall not be called into question on the ground of lack of capacity by reason of anything in the company's articles.",
+            app: "Although the swimming pool contract is outside the scope of articles, Section 34 protects the builder. The company cannot claim lack of capacity to escape the contract.",
+            conclusion: "The contract is valid and binding. The builder can enforce payment against the company."
+        },
+        {
+            id: "Turquand",
+            title: "Indoor Management Rule",
+            prompt: "A company's Articles specify the directors can borrow up to KES 1 million unless authorized by a shareholder resolution. The directors borrow KES 2 million from a bank without the resolution. The company defaults, claiming the bank should have checked the public records.",
+            issue: "Is a bank bound to investigate whether a company's internal resolutions were properly passed before lending?",
+            rule: "Under the Indoor Management Rule (<em>Royal British Bank v Turquand</em>), outsiders dealing in good faith are entitled to assume that internal company procedures have been complied with, unless they had notice of the irregularity or the transaction is highly suspicious.",
+            app: "The bank knew the directors had public borrowing powers. The restriction of a 'shareholder resolution' was an internal matter. The bank acted in good faith and had no notice of the failure to pass the resolution.",
+            conclusion: "The loan is valid and enforceable against the company. The company is bound by the KES 2 million debt."
+        }
+    ];
+
+    const SOLVER_DATA = {
+        company: {
+            title: "Company Law Scenarios",
+            options: [
+                {
+                    text: "1. Contract signed before the company was registered",
+                    diagnosis: "<strong>Legal Topic:</strong> Pre-incorporation Contracts<br/><br/>" +
+                        "<strong>Key Rule:</strong> Under Section 23 of the Kenyan Companies Act (and the common law rule in <em>Kelner v Baxter</em>), a company cannot contract before it exists. A promoter remains personally liable for any pre-incorporation contracts unless there is a novation (signing a fresh contract after incorporation).<br/><br/>" +
+                        "<strong>Key Case Law:</strong> <em>Kelner v Baxter</em>, <em>Phonogram Ltd v Lane</em>.<br/><br/>" +
+                        "<strong>Outcome:</strong> The signing individual (promoter) is personally liable. The company cannot simply 'ratify' the contract after registration; it must execute a new contract (novation)."
+                },
+                {
+                    text: "2. Directors entered a contract outside the company's business objects",
+                    diagnosis: "<strong>Legal Topic:</strong> Ultra Vires Doctrine & Directors' Powers<br/><br/>" +
+                        "<strong>Key Rule:</strong> At common law (<em>Ashbury Railway v Riche</em>), transactions outside the objects clause were void. Modern statutory rules (Section 34 of the Kenyan Companies Act) protect third parties: the validity of an act done by a company cannot be questioned due to lack of capacity in the Articles.<br/><br/>" +
+                        "<strong>Key Case Law:</strong> <em>Ashbury Railway Carriage & Iron Co v Riche</em>, <em>Rolled Steel Products v British Steel</em>.<br/><br/>" +
+                        "<strong>Outcome:</strong> The contract is binding and enforceable by the third party against the company. However, the directors may still be sued internally by shareholders for breaching their duties."
+                },
+                {
+                    text: "3. An individual is using a company to hide from personal debts or legal restrictions",
+                    diagnosis: "<strong>Legal Topic:</strong> Lifting the Corporate Veil<br/><br/>" +
+                        "<strong>Key Rule:</strong> While a company is a separate legal person (<em>Salomon v Salomon</em>), the courts will 'lift the corporate veil' if the company is used as a device, sham, or facade to evade an existing legal obligation or perpetrate fraud.<br/><br/>" +
+                        "<strong>Key Case Law:</strong> <em>Gilford Motor Co v Horne</em>, <em>Jones v Lipman</em>, <em>Salomon v A. Salomon & Co Ltd</em>.<br/><br/>" +
+                        "<strong>Outcome:</strong> The court will ignore the corporate veil and hold the individual promoter or director personally responsible for the acts."
+                },
+                {
+                    text: "4. Internal procedural rule was not followed before borrowing/signing",
+                    diagnosis: "<strong>Legal Topic:</strong> Indoor Management Rule (Turquand's Rule)<br/><br/>" +
+                        "<strong>Key Rule:</strong> Outsiders dealing with a company in good faith are entitled to assume that internal regulations (like passing shareholder resolutions) have been properly followed. They are not required to investigate internal company proceedings.<br/><br/>" +
+                        "<strong>Key Case Law:</strong> <em>Royal British Bank v Turquand</em>, <em>Mahony v East Holyford Mining</em>.<br/><br/>" +
+                        "<strong>Outcome:</strong> The contract is binding on the company. The company cannot escape liability by claiming internal procedures were breached, unless the third party had notice of the irregularity."
+                }
+            ]
+        },
+        partnership: {
+            title: "Partnership Law Scenarios",
+            options: [
+                {
+                    text: "1. A partner signed a business contract without other partners' knowledge",
+                    diagnosis: "<strong>Legal Topic:</strong> Mutual Agency & Liability of Partners<br/><br/>" +
+                        "<strong>Key Rule:</strong> Every partner is an agent of the firm and the other partners for the purpose of the business of the partnership. Acts done in the usual course of partnership business bind the firm and all partners, unless the partner has no authority and the third party knows this.<br/><br/>" +
+                        "<strong>Key Statute:</strong> Section 7 of the Kenyan Partnership Act.<br/><br/>" +
+                        "<strong>Outcome:</strong> The contract is fully binding on all partners. The firm must perform the contract, but can seek internal compensation from the rogue partner."
+                },
+                {
+                    text: "2. A third party wants to sue the firm for a mistake/tort committed by one partner",
+                    diagnosis: "<strong>Legal Topic:</strong> Joint & Several Liability for Wrongful Acts<br/><br/>" +
+                        "<strong>Key Rule:</strong> Partners are jointly and severally liable for any wrongful act or omission of any partner acting in the ordinary course of business of the firm, or with the authority of their co-partners.<br/><br/>" +
+                        "<strong>Key Statute:</strong> Sections 11 & 12 of the Partnership Act.<br/><br/>" +
+                        "<strong>Outcome:</strong> The third party can sue the partnership firm as a whole, or sue any individual partner for the full amount of the damage."
+                },
+                {
+                    text: "3. A dispute arose regarding division of profits where there is no written agreement",
+                    diagnosis: "<strong>Legal Topic:</strong> Default Rules in Absence of Partnership Deed<br/><br/>" +
+                        "<strong>Key Rule:</strong> In the absence of a written partnership agreement, default statutory rules apply. Profits and losses must be shared equally, no partner is entitled to a salary, and no interest is paid on capital.<br/><br/>" +
+                        "<strong>Key Statute:</strong> Section 28 of the Partnership Act.<br/><br/>" +
+                        "<strong>Outcome:</strong> Profits must be divided 50/50 equally, regardless of the unequal capital contributions made by the partners."
+                }
+            ]
+        }
+    };
+
+    // Case Law Matcher Game State
+    let matcherState = {
+        selectedCase: null,
+        selectedPrinciple: null,
+        matchesCompleted: 0,
+        moves: 0,
+        secondsElapsed: 0,
+        timerInterval: null,
+        gameActive: false,
+        activeCases: []
+    };
+
+    function switchCaseSubTab(subTabId) {
+        document.querySelectorAll('#tab-cases .sub-tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('#tab-cases .case-subtab').forEach(tab => tab.style.display = 'none');
+        
+        if (subTabId === 'list') {
+            document.getElementById('case-list-tab-btn').classList.add('active');
+            document.getElementById('case-subtab-list').style.display = 'block';
+            stopMatcherTimer();
+        } else if (subTabId === 'matcher') {
+            document.getElementById('case-matcher-tab-btn').classList.add('active');
+            document.getElementById('case-subtab-matcher').style.display = 'block';
+            startCaseMatcher();
+        }
+    }
+
+    function startCaseMatcher() {
+        matcherState.selectedCase = null;
+        matcherState.selectedPrinciple = null;
+        matcherState.matchesCompleted = 0;
+        matcherState.moves = 0;
+        matcherState.secondsElapsed = 0;
+        matcherState.gameActive = true;
+        
+        document.getElementById('matcher-score').textContent = '0 / 4';
+        document.getElementById('matcher-moves').textContent = '0';
+        document.getElementById('matcher-time').textContent = '00:00';
+        document.getElementById('matcher-win-message').style.display = 'none';
+
+        // Select 4 random cases from case law library, ensuring unique categories
+        const uniqueCategoryCases = [];
+        const seenCategories = new Set();
+        const shuffledCases = [...window.CASE_LAW_DATA].sort(() => 0.5 - Math.random());
+        
+        for (let c of shuffledCases) {
+            if (!seenCategories.has(c.category)) {
+                seenCategories.add(c.category);
+                uniqueCategoryCases.push(c);
+                if (uniqueCategoryCases.length === 4) break;
+            }
+        }
+        
+        if (uniqueCategoryCases.length < 4) {
+            matcherState.activeCases = shuffledCases.slice(0, 4);
+        } else {
+            matcherState.activeCases = uniqueCategoryCases;
+        }
+
+        const casesCol = document.getElementById('matcher-cases-col');
+        const principlesCol = document.getElementById('matcher-principles-col');
+        casesCol.innerHTML = '';
+        principlesCol.innerHTML = '';
+
+        matcherState.activeCases.forEach(item => {
+            const tile = document.createElement('div');
+            tile.className = 'matcher-tile';
+            tile.id = `matcher-case-${item.name.replace(/\s+/g, '-')}`;
+            tile.textContent = item.name;
+            tile.onclick = () => selectCaseTile(item.name.replace(/\s+/g, '-'));
+            casesCol.appendChild(tile);
+        });
+
+        const shuffledPrinciples = [...matcherState.activeCases].sort(() => 0.5 - Math.random());
+        shuffledPrinciples.forEach(item => {
+            const tile = document.createElement('div');
+            tile.className = 'matcher-tile';
+            tile.id = `matcher-principle-${item.name.replace(/\s+/g, '-')}`;
+            tile.textContent = item.takeaway;
+            tile.onclick = () => selectPrincipleTile(item.name.replace(/\s+/g, '-'));
+            principlesCol.appendChild(tile);
+        });
+
+        startMatcherTimer();
+    }
+
+    function startMatcherTimer() {
+        stopMatcherTimer();
+        matcherState.timerInterval = setInterval(() => {
+            matcherState.secondsElapsed++;
+            const mins = Math.floor(matcherState.secondsElapsed / 60).toString().padStart(2, '0');
+            const secs = (matcherState.secondsElapsed % 60).toString().padStart(2, '0');
+            document.getElementById('matcher-time').textContent = `${mins}:${secs}`;
+        }, 1000);
+    }
+
+    function stopMatcherTimer() {
+        if (matcherState.timerInterval) {
+            clearInterval(matcherState.timerInterval);
+            matcherState.timerInterval = null;
+        }
+    }
+
+    function selectCaseTile(caseNameId) {
+        if (!matcherState.gameActive) return;
+        
+        if (matcherState.selectedCase) {
+            const prevTile = document.getElementById(`matcher-case-${matcherState.selectedCase}`);
+            if (prevTile) prevTile.classList.remove('active');
+        }
+
+        matcherState.selectedCase = caseNameId;
+        const curTile = document.getElementById(`matcher-case-${caseNameId}`);
+        if (curTile) curTile.classList.add('active');
+
+        checkMatchAttempt();
+    }
+
+    function selectPrincipleTile(principleNameId) {
+        if (!matcherState.gameActive) return;
+
+        if (matcherState.selectedPrinciple) {
+            const prevTile = document.getElementById(`matcher-principle-${matcherState.selectedPrinciple}`);
+            if (prevTile) prevTile.classList.remove('active');
+        }
+
+        matcherState.selectedPrinciple = principleNameId;
+        const curTile = document.getElementById(`matcher-principle-${principleNameId}`);
+        if (curTile) curTile.classList.add('active');
+
+        checkMatchAttempt();
+    }
+
+    function checkMatchAttempt() {
+        if (matcherState.selectedCase && matcherState.selectedPrinciple) {
+            matcherState.moves++;
+            document.getElementById('matcher-moves').textContent = matcherState.moves;
+
+            const caseTile = document.getElementById(`matcher-case-${matcherState.selectedCase}`);
+            const principleTile = document.getElementById(`matcher-principle-${matcherState.selectedPrinciple}`);
+
+            if (matcherState.selectedCase === matcherState.selectedPrinciple) {
+                caseTile.classList.remove('active');
+                principleTile.classList.remove('active');
+                caseTile.classList.add('success');
+                principleTile.classList.add('success');
+                
+                caseTile.style.pointerEvents = 'none';
+                principleTile.style.pointerEvents = 'none';
+
+                matcherState.matchesCompleted++;
+                document.getElementById('matcher-score').textContent = `${matcherState.matchesCompleted} / 4`;
+
+                matcherState.selectedCase = null;
+                matcherState.selectedPrinciple = null;
+
+                if (matcherState.matchesCompleted === 4) {
+                    matcherState.gameActive = false;
+                    stopMatcherTimer();
+                    document.getElementById('matcher-win-time').textContent = matcherState.secondsElapsed;
+                    document.getElementById('matcher-win-moves').textContent = matcherState.moves;
+                    document.getElementById('matcher-win-message').style.display = 'block';
+                }
+            } else {
+                caseTile.classList.add('error');
+                principleTile.classList.add('error');
+
+                setTimeout(() => {
+                    caseTile.classList.remove('error', 'active');
+                    principleTile.classList.remove('error', 'active');
+                }, 800);
+
+                matcherState.selectedCase = null;
+                matcherState.selectedPrinciple = null;
+            }
+        }
+    }
+
+    // IRAC Builder state
+    let iracState = {
+        selectedScenarioId: null
+    };
+
+    function renderIracScenarioList() {
+        const list = document.getElementById('irac-scenario-list');
+        if (!list) return;
+        list.innerHTML = '';
+        IRAC_SCENARIOS.forEach(sc => {
+            const li = document.createElement('li');
+            const btn = document.createElement('button');
+            btn.className = 'sidebar-link';
+            btn.style.width = '100%';
+            btn.style.textAlign = 'left';
+            btn.style.border = 'none';
+            btn.id = `irac-btn-${sc.id}`;
+            btn.textContent = sc.title;
+            btn.onclick = () => selectIracScenario(sc.id);
+            li.appendChild(btn);
+            list.appendChild(li);
+        });
+    }
+
+    function selectIracScenario(id) {
+        iracState.selectedScenarioId = id;
+        document.querySelectorAll('#irac-scenario-list .sidebar-link').forEach(btn => btn.classList.remove('active'));
+        document.getElementById(`irac-btn-${id}`).classList.add('active');
+
+        const sc = IRAC_SCENARIOS.find(x => x.id === id);
+        document.getElementById('irac-scenario-title').textContent = sc.title;
+        document.getElementById('irac-scenario-prompt').innerHTML = `<strong>Context:</strong> ${sc.prompt}`;
+
+        document.getElementById('irac-issue-draft').value = '';
+        document.getElementById('irac-rule-draft').value = '';
+        document.getElementById('irac-app-draft').value = '';
+        document.getElementById('irac-conclusion-draft').value = '';
+
+        hideIracModelAnswers();
+        document.getElementById('irac-reveal-btn').disabled = false;
+        
+        updateIracProgress();
+    }
+
+    function updateIracProgress() {
+        if (!iracState.selectedScenarioId) return;
+        const issue = document.getElementById('irac-issue-draft').value.trim();
+        const rule = document.getElementById('irac-rule-draft').value.trim();
+        const app = document.getElementById('irac-app-draft').value.trim();
+        const conclusion = document.getElementById('irac-conclusion-draft').value.trim();
+
+        let count = 0;
+        if (issue) count++;
+        if (rule) count++;
+        if (app) count++;
+        if (conclusion) count++;
+
+        const percent = Math.round((count / 4) * 100);
+        document.getElementById('irac-progress-text').textContent = `${percent}% Completed`;
+    }
+
+    function toggleIracModelAnswers() {
+        if (!iracState.selectedScenarioId) return;
+        const modelBox = document.getElementById('irac-issue-model-box');
+        const sc = IRAC_SCENARIOS.find(x => x.id === iracState.selectedScenarioId);
+
+        if (modelBox.style.display === 'none') {
+            document.getElementById('irac-issue-model').innerHTML = sc.issue;
+            document.getElementById('irac-rule-model').innerHTML = sc.rule;
+            document.getElementById('irac-app-model').innerHTML = sc.app;
+            document.getElementById('irac-conclusion-model').innerHTML = sc.conclusion;
+
+            document.getElementById('irac-issue-model-box').style.display = 'block';
+            document.getElementById('irac-rule-model-box').style.display = 'block';
+            document.getElementById('irac-app-model-box').style.display = 'block';
+            document.getElementById('irac-conclusion-model-box').style.display = 'block';
+
+            document.getElementById('irac-reveal-btn').textContent = 'Hide Model Answer';
+        } else {
+            hideIracModelAnswers();
+        }
+    }
+
+    function hideIracModelAnswers() {
+        document.getElementById('irac-issue-model-box').style.display = 'none';
+        document.getElementById('irac-rule-model-box').style.display = 'none';
+        document.getElementById('irac-app-model-box').style.display = 'none';
+        document.getElementById('irac-conclusion-model-box').style.display = 'none';
+        document.getElementById('irac-reveal-btn').textContent = 'Reveal Model Answer';
+    }
+
+    function resetIracWorksheet() {
+        document.getElementById('irac-issue-draft').value = '';
+        document.getElementById('irac-rule-draft').value = '';
+        document.getElementById('irac-app-draft').value = '';
+        document.getElementById('irac-conclusion-draft').value = '';
+        hideIracModelAnswers();
+        updateIracProgress();
+    }
+
+    // Solver state
+    let solverState = {
+        currentStep: 1,
+        selectedArea: null
+    };
+
+    function selectSolverArea(area) {
+        solverState.selectedArea = area;
+        solverState.currentStep = 2;
+        
+        document.getElementById('solver-step-1').style.display = 'none';
+        document.getElementById('solver-step-2').style.display = 'block';
+        
+        document.getElementById('wizard-step-1-indicator').className = 'wizard-step completed';
+        document.getElementById('wizard-step-2-indicator').className = 'wizard-step active';
+        document.getElementById('solver-step-progress').style.width = '50%';
+
+        document.getElementById('solver-step-2-question').textContent = `Step 2: Select the specific fact issue for ${SOLVER_DATA[area].title}`;
+
+        const optionsContainer = document.getElementById('solver-step-2-options');
+        optionsContainer.innerHTML = '';
+        SOLVER_DATA[area].options.forEach((opt, idx) => {
+            const btn = document.createElement('button');
+            btn.className = 'btn solver-btn-choice';
+            btn.innerHTML = `<strong>${opt.text}</strong><span>Click to diagnose this fact pattern.</span>`;
+            btn.onclick = () => solveScenario(idx);
+            optionsContainer.appendChild(btn);
+        });
+    }
+
+    function solveScenario(optionIndex) {
+        const area = solverState.selectedArea;
+        const diag = SOLVER_DATA[area].options[optionIndex].diagnosis;
+
+        document.getElementById('solver-diagnosis-result').innerHTML = diag;
+
+        solverState.currentStep = 3;
+        document.getElementById('solver-step-2').style.display = 'none';
+        document.getElementById('solver-step-3').style.display = 'block';
+
+        document.getElementById('wizard-step-2-indicator').className = 'wizard-step completed';
+        document.getElementById('wizard-step-3-indicator').className = 'wizard-step active';
+        document.getElementById('solver-step-progress').style.width = '100%';
+    }
+
+    function prevSolverStep() {
+        if (solverState.currentStep === 2) {
+            solverState.currentStep = 1;
+            document.getElementById('solver-step-2').style.display = 'none';
+            document.getElementById('solver-step-1').style.display = 'block';
+
+            document.getElementById('wizard-step-1-indicator').className = 'wizard-step active';
+            document.getElementById('wizard-step-2-indicator').className = 'wizard-step';
+            document.getElementById('solver-step-progress').style.width = '0%';
+        } else if (solverState.currentStep === 3) {
+            solverState.currentStep = 2;
+            document.getElementById('solver-step-3').style.display = 'none';
+            document.getElementById('solver-step-2').style.display = 'block';
+
+            document.getElementById('wizard-step-2-indicator').className = 'wizard-step active';
+            document.getElementById('wizard-step-3-indicator').className = 'wizard-step';
+            document.getElementById('solver-step-progress').style.width = '50%';
+        }
+    }
+
+    function resetSolver() {
+        solverState.currentStep = 1;
+        solverState.selectedArea = null;
+
+        document.getElementById('solver-step-3').style.display = 'none';
+        document.getElementById('solver-step-1').style.display = 'block';
+
+        document.getElementById('wizard-step-1-indicator').className = 'wizard-step active';
+        document.getElementById('wizard-step-2-indicator').className = 'wizard-step';
+        document.getElementById('wizard-step-3-indicator').className = 'wizard-step';
+        document.getElementById('solver-step-progress').style.width = '0%';
+    }
+
+    // Countdown and Goals Tracker
+    function initCountdownTimer() {
+        const targetDate = new Date("2026-06-10T09:00:00+03:00").getTime();
+        
+        function updateTimer() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                document.getElementById('countdown-timer').innerHTML = "<div style='font-size:1.1rem; font-weight:700; color:var(--error);'>EXAM HAS COMMENCED! ⚖️</div>";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('timer-days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('timer-hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('timer-mins').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('timer-secs').textContent = seconds.toString().padStart(2, '0');
+        }
+
+        updateTimer();
+        setInterval(updateTimer, 1000);
+    }
+
+    let sessionGoals = {
+        readCount: 0,
+        flipCount: 0,
+        quizDone: 0
+    };
+
+    function trackReadGoal(secId) {
+        sessionGoals.readCount++;
+        updateGoalsUI();
+    }
+
+    function trackFlipGoal() {
+        sessionGoals.flipCount++;
+        updateGoalsUI();
+    }
+
+    function trackQuizGoal() {
+        sessionGoals.quizDone = 1;
+        updateGoalsUI();
+    }
+
+    function updateGoalsUI() {
+        const readCheckbox = document.getElementById('goal-read');
+        const flipCheckbox = document.getElementById('goal-flip');
+        const quizCheckbox = document.getElementById('goal-quiz');
+
+        const readCountEl = document.getElementById('goal-read-count');
+        const flipCountEl = document.getElementById('goal-flip-count');
+        const quizCountEl = document.getElementById('goal-quiz-count');
+
+        const readVal = Math.min(sessionGoals.readCount, 2);
+        const flipVal = Math.min(sessionGoals.flipCount, 5);
+        const quizVal = Math.min(sessionGoals.quizDone, 1);
+
+        if (readCountEl) readCountEl.textContent = `${readVal}/2`;
+        if (flipCountEl) flipCountEl.textContent = `${flipVal}/5`;
+        if (quizCountEl) quizCountEl.textContent = `${quizVal}/1`;
+
+        if (readCheckbox) readCheckbox.checked = readVal >= 2;
+        if (flipCheckbox) flipCheckbox.checked = flipVal >= 5;
+        if (quizCheckbox) quizCheckbox.checked = quizVal >= 1;
+
+        let completed = 0;
+        if (readVal >= 2) completed++;
+        if (flipVal >= 5) completed++;
+        if (quizVal >= 1) completed++;
+
+        const percent = Math.round((completed / 3) * 100);
+        const percentageEl = document.getElementById('goals-percentage');
+        const progressEl = document.getElementById('goals-progress-fill');
+        if (percentageEl) percentageEl.textContent = `${percent}% Done`;
+        if (progressEl) progressEl.style.width = `${percent}%`;
+    }
+
+    // Cheat Sheet Printing
+    function printCheatSheet() {
+        const printWindow = window.open('', '_blank');
+        
+        let casesHtml = '';
+        window.CASE_LAW_DATA.forEach(c => {
+            casesHtml += `
+                <div class="cheat-item">
+                    <div class="cheat-item-title">${c.name} (${c.citation || ''})</div>
+                    <div class="cheat-item-body">
+                        <strong>Facts:</strong> ${c.facts}<br/>
+                        <strong>Holding:</strong> ${c.holding}
+                    </div>
+                </div>
+            `;
+        });
+
+        let statutesHtml = '';
+        window.REF_DATA_ITEMS.forEach(s => {
+            statutesHtml += `
+                <div class="cheat-item">
+                    <div class="cheat-item-title">${s.name}</div>
+                    <div class="cheat-item-body">
+                        <strong>Provision:</strong> ${s.provision || ''}<br/>
+                        <strong>Detail:</strong> ${s.details || ''}
+                    </div>
+                </div>
+            `;
+        });
+
+        printWindow.document.write(`
+            <html>
+            <head>
+                <title>Revision Cheat Sheet - Construction Law B</title>
+                <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@700&display=swap" rel="stylesheet">
+                <style>
+                    body {
+                        font-family: 'Inter', sans-serif;
+                        color: #000;
+                        background: #fff;
+                        padding: 20px;
+                        line-height: 1.4;
+                        font-size: 11px;
+                    }
+                    h1 {
+                        font-family: 'Outfit', sans-serif;
+                        font-size: 18px;
+                        text-align: center;
+                        margin-bottom: 5px;
+                        border-bottom: 2px solid #000;
+                        padding-bottom: 5px;
+                    }
+                    .subtitle {
+                        text-align: center;
+                        font-size: 11px;
+                        color: #555;
+                        margin-bottom: 20px;
+                        text-transform: uppercase;
+                        letter-spacing: 0.05em;
+                    }
+                    .section-title {
+                        font-family: 'Outfit', sans-serif;
+                        font-size: 13px;
+                        background-color: #f0f0f0;
+                        padding: 6px 10px;
+                        border-left: 4px solid #000;
+                        margin-top: 20px;
+                        margin-bottom: 10px;
+                        font-weight: 700;
+                    }
+                    .cheat-grid {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        gap: 12px;
+                    }
+                    @media print {
+                        body { padding: 0; }
+                        .no-print { display: none; }
+                    }
+                    .cheat-item {
+                        border: 1px solid #ddd;
+                        border-radius: 6px;
+                        padding: 8px 10px;
+                        background-color: #fafafa;
+                        page-break-inside: avoid;
+                    }
+                    .cheat-item-title {
+                        font-weight: 700;
+                        font-size: 11px;
+                        color: #000;
+                        margin-bottom: 4px;
+                        border-bottom: 1px solid #eee;
+                        padding-bottom: 2px;
+                    }
+                    .cheat-item-body {
+                        color: #333;
+                    }
+                    .footer {
+                        text-align: center;
+                        margin-top: 30px;
+                        font-size: 9px;
+                        color: #777;
+                        border-top: 1px dashed #ccc;
+                        padding-top: 10px;
+                    }
+                </style>
+            </head>
+            <body onload="setTimeout(function() { window.print(); }, 500);">
+                <div class="no-print" style="background:#fff3cd; color:#856404; padding:10px; border:1px solid #ffeeba; border-radius:6px; margin-bottom:20px; text-align:center; font-size:12px;">
+                    <strong>Print Preview:</strong> This page is formatted specifically for printing. Press <strong>Ctrl + P</strong> (or Print button) to save as PDF or print.
+                    <button onclick="window.print()" style="margin-left:15px; padding:4px 8px; font-weight:bold; cursor:pointer;">Print Now</button>
+                </div>
+                <h1>CONSTRUCTION LAW B (EACQ 3214) - REVISION CHEAT SHEET</h1>
+                <div class="subtitle">Quick reference of Key Cases and statutory Provisions</div>
+                
+                <div class="section-title">I. KEY CASE LAW LIBRARY</div>
+                <div class="cheat-grid">
+                    ${casesHtml}
+                </div>
+
+                <div class="section-title">II. STATUTORY SECTIONS & ARTICLES</div>
+                <div class="cheat-grid">
+                    ${statutesHtml}
+                </div>
+
+                <div class="footer">
+                    &copy; 2026 Systems by Ronny. Formatted for EACQ 3214 & EACQ 3114 Exam Prep.
+                </div>
+            </body>
+            </html>
+        `);
+        printWindow.document.close();
     }
 
     // --- EXAM PREP HUB CONTROLS ---
