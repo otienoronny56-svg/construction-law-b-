@@ -8,6 +8,16 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
     
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TJELEH8R9H"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-TJELEH8R9H');
+    </script>
+    
     <style>
         :root {
             /* Light Theme Variables */
@@ -2193,6 +2203,256 @@
                 page-break-inside: avoid;
             }
         }
+
+        /* Developer Contact Card Styles */
+        .developer-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 28px 32px;
+            margin-top: 16px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            max-width: 480px;
+            width: 100%;
+            transition: var(--transition);
+        }
+        .developer-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin: 0;
+        }
+        .developer-phone {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--bg-color);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 10px 18px;
+            width: 100%;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        .developer-phone-text {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: var(--text-color);
+            letter-spacing: 0.03em;
+        }
+        .developer-btn-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+        }
+        .developer-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 50px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.25s;
+            flex: 1;
+            min-width: 130px;
+            justify-content: center;
+        }
+        .developer-btn:hover {
+            transform: translateY(-2px);
+        }
+        .dev-btn-wa {
+            background: #25D366;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+        }
+        .dev-btn-wa:hover {
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.55);
+        }
+        .dev-btn-li {
+            background: #0A66C2;
+            box-shadow: 0 4px 12px rgba(10, 102, 194, 0.4);
+        }
+        .dev-btn-li:hover {
+            box-shadow: 0 8px 20px rgba(10, 102, 194, 0.55);
+        }
+        .dev-btn-port {
+            background: linear-gradient(135deg, #4f46e5, #0ea5e9);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
+        }
+        .dev-btn-port:hover {
+            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.55);
+        }
+
+        /* Secret Admin Modal Styling */
+        .admin-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(11, 15, 25, 0.6);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .admin-modal.show {
+            display: flex;
+            opacity: 1;
+        }
+        .admin-modal-content {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        .admin-modal.show .admin-modal-content {
+            transform: scale(1);
+        }
+        .admin-modal-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--card-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .admin-modal-title {
+            font-size: 1.25rem;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .pulse-indicator {
+            width: 10px;
+            height: 10px;
+            background-color: var(--success);
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            animation: pulse-green 1.5s infinite;
+        }
+        @keyframes pulse-green {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            }
+        }
+        .admin-modal-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .admin-modal-close:hover {
+            color: var(--text-color);
+        }
+        .admin-modal-body {
+            padding: 24px;
+        }
+        .admin-stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .admin-stat-card {
+            background-color: var(--bg-color);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .admin-stat-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .admin-stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            font-family: 'Outfit', sans-serif;
+        }
+        .admin-stat-sub {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        .admin-info-box {
+            background-color: var(--primary-light);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+            text-align: left;
+        }
+        .admin-info-box h4 {
+            color: var(--primary);
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .admin-info-box p {
+            font-size: 0.85rem;
+            color: var(--text-color);
+        }
+
+        @media (max-width: 580px) {
+            .developer-card {
+                padding: 20px 16px;
+                gap: 12px;
+            }
+            .developer-btn-row {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .developer-btn {
+                width: 100%;
+                min-width: unset;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .admin-stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -2491,44 +2751,35 @@
         <div class="footer-brand">
             <img src="logo.jpeg" alt="Systems by Ronny Logo" class="footer-logo-img" />
         </div>
-        <div class="glowing-text">Systems by Ronny</div>
+        <div class="glowing-text" onclick="openAdminModal()" style="cursor: pointer;" title="Open Admin Console">Systems by Ronny</div>
 
         <!-- Developer Contact Card -->
-        <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:20px; padding:28px 32px; margin-top:16px; box-shadow:var(--shadow-lg); display:flex; flex-direction:column; align-items:center; gap:16px; max-width:480px; width:100%;">
-            <p style="font-family:'Outfit',sans-serif; font-size:1rem; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.08em; margin:0;">Contact Developer</p>
+        <div class="developer-card">
+            <p class="developer-title">Contact Developer</p>
 
             <!-- Phone number (visible) -->
-            <div style="display:flex; align-items:center; gap:10px; background:var(--bg-color); border:1px solid var(--card-border); border-radius:12px; padding:10px 18px; width:100%; justify-content:center;">
+            <div class="developer-phone">
                 <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:none;stroke:var(--primary);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.03 2.18 2 2 0 012 .03h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14z"/></svg>
-                <span style="font-family:'Outfit',sans-serif; font-weight:800; font-size:1.15rem; color:var(--text-color); letter-spacing:0.03em;">0745 806 488</span>
+                <span class="developer-phone-text">0745 806 488</span>
             </div>
 
             <!-- Action buttons row -->
-            <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center; width:100%;">
+            <div class="developer-btn-row">
 
                 <!-- WhatsApp -->
-                <a href="https://wa.me/254745806488" target="_blank" rel="noopener noreferrer"
-                   style="display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;text-decoration:none;padding:10px 18px;border-radius:50px;font-family:'Outfit',sans-serif;font-weight:700;font-size:0.9rem;box-shadow:0 4px 12px rgba(37,211,102,0.4);transition:all 0.25s;flex:1;min-width:130px;justify-content:center;"
-                   onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 20px rgba(37,211,102,0.55)'"
-                   onmouseout="this.style.transform='';this.style.boxShadow='0 4px 12px rgba(37,211,102,0.4)'">
+                <a href="https://wa.me/254745806488" target="_blank" rel="noopener noreferrer" class="developer-btn dev-btn-wa">
                     <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:#fff;flex-shrink:0;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                     WhatsApp
                 </a>
 
                 <!-- LinkedIn -->
-                <a href="https://www.linkedin.com/in/ronny-winstone" target="_blank" rel="noopener noreferrer"
-                   style="display:inline-flex;align-items:center;gap:8px;background:#0A66C2;color:#fff;text-decoration:none;padding:10px 18px;border-radius:50px;font-family:'Outfit',sans-serif;font-weight:700;font-size:0.9rem;box-shadow:0 4px 12px rgba(10,102,194,0.4);transition:all 0.25s;flex:1;min-width:130px;justify-content:center;"
-                   onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 20px rgba(10,102,194,0.55)'"
-                   onmouseout="this.style.transform='';this.style.boxShadow='0 4px 12px rgba(10,102,194,0.4)'">
+                <a href="https://www.linkedin.com/in/ronny-winstone" target="_blank" rel="noopener noreferrer" class="developer-btn dev-btn-li">
                     <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:#fff;flex-shrink:0;"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                     LinkedIn
                 </a>
 
                 <!-- Portfolio -->
-                <a href="https://ronnydevportfolio.vercel.app" target="_blank" rel="noopener noreferrer"
-                   style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#4f46e5,#0ea5e9);color:#fff;text-decoration:none;padding:10px 18px;border-radius:50px;font-family:'Outfit',sans-serif;font-weight:700;font-size:0.9rem;box-shadow:0 4px 12px rgba(79,70,229,0.4);transition:all 0.25s;flex:1;min-width:130px;justify-content:center;"
-                   onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 20px rgba(79,70,229,0.55)'"
-                   onmouseout="this.style.transform='';this.style.boxShadow='0 4px 12px rgba(79,70,229,0.4)'">
+                <a href="https://ronnydevportfolio.vercel.app" target="_blank" rel="noopener noreferrer" class="developer-btn dev-btn-port">
                     <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
                     Portfolio
                 </a>
@@ -2538,6 +2789,60 @@
         <p class="footer-tagline">Providing state-of-the-art technological systems and educational solutions.</p>
         <p class="footer-copyright">&copy; 2026 Systems by Ronny. All rights reserved. Created with passion for educational excellence.</p>
     </footer>
+
+    <!-- Secret Admin Dashboard Modal -->
+    <div id="admin-modal" class="admin-modal" onclick="if(event.target === this) closeAdminModal();">
+        <div class="admin-modal-content">
+            <div class="admin-modal-header">
+                <h2 class="admin-modal-title">
+                    <span class="pulse-indicator"></span>
+                    Systems by Ronny - Admin Console
+                </h2>
+                <button class="admin-modal-close" onclick="closeAdminModal()">&times;</button>
+            </div>
+            <div class="admin-modal-body">
+                <div class="admin-stats-grid">
+                    <div class="admin-stat-card">
+                        <span class="admin-stat-label">Live Active Users</span>
+                        <div class="admin-stat-value" id="admin-live-users">3</div>
+                        <span class="admin-stat-sub">Simulated local peers (Range: 2-5)</span>
+                    </div>
+                    <div class="admin-stat-card">
+                        <span class="admin-stat-label">Google Analytics Status</span>
+                        <div class="admin-stat-value" style="color: var(--success); font-size: 1.5rem; line-height: 1;">ACTIVE</div>
+                        <span class="admin-stat-sub">Tracking ID: <strong>G-TJELEH8R9H</strong></span>
+                    </div>
+                    <div class="admin-stat-card">
+                        <span class="admin-stat-label">Your Active Session</span>
+                        <div class="admin-stat-value" id="admin-session-time">00:00</div>
+                        <span class="admin-stat-sub">Time spent on dashboard</span>
+                    </div>
+                    <div class="admin-stat-card">
+                        <span class="admin-stat-label">Total Local Pageviews</span>
+                        <div class="admin-stat-value" id="admin-pageviews">1</div>
+                        <span class="admin-stat-sub">Stored in localStorage</span>
+                    </div>
+                </div>
+
+                <div class="admin-info-box">
+                    <h4><svg class="svg-icon" viewBox="0 0 24 24" style="fill: var(--primary); width: 16px; height: 16px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg> How to See Real-Time Visitors</h4>
+                    <p>Google Analytics tracks every visitor globally. To see exact, real-time visitors:</p>
+                    <ol style="margin-left: 20px; margin-top: 8px; font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;">
+                        <li>Go to the <a href="https://analytics.google.com/" target="_blank" style="color: var(--primary); text-decoration: underline;">Google Analytics Console</a>.</li>
+                        <li>Sign in with your registered Google account.</li>
+                        <li>Navigate to <strong>Reports > Realtime</strong> in the left sidebar.</li>
+                        <li>You will see a live map and counts of people online right now!</li>
+                    </ol>
+                </div>
+                
+                <div style="text-align: center; margin-top: 15px;">
+                    <a href="https://analytics.google.com/" target="_blank" class="btn btn-primary" style="font-size: 0.9rem; padding: 10px 20px;">
+                        Open Google Analytics Console ➔
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Load Modulized Javascript Data Files -->
@@ -2572,6 +2877,7 @@
         initFlashcard();
         initQuiz();
         updateMasteryUI();
+        initAdminConsole();
     });
 
     // Theme Toggle
@@ -3227,6 +3533,65 @@
             updateStatsUI();
             
             alert("Progress has been fully reset.");
+        }
+    }
+
+    // Admin Console Functions
+    let sessionSeconds = 0;
+    let sessionTimer = null;
+    let activeUsersInterval = null;
+
+    function initAdminConsole() {
+        // Track local page views
+        let pageviews = parseInt(localStorage.getItem('ronny_admin_pageviews') || '0');
+        pageviews++;
+        localStorage.setItem('ronny_admin_pageviews', pageviews.toString());
+        
+        // Start session duration stopwatch
+        sessionSeconds = 0;
+        if (sessionTimer) clearInterval(sessionTimer);
+        sessionTimer = setInterval(() => {
+            sessionSeconds++;
+            const mins = Math.floor(sessionSeconds / 60).toString().padStart(2, '0');
+            const secs = (sessionSeconds % 60).toString().padStart(2, '0');
+            const durationEl = document.getElementById('admin-session-time');
+            if (durationEl) durationEl.textContent = `${mins}:${secs}`;
+        }, 1000);
+
+        // Periodically fluctuate simulated online users (between 2 and 5)
+        updateSimulatedUsers();
+        if (activeUsersInterval) clearInterval(activeUsersInterval);
+        activeUsersInterval = setInterval(updateSimulatedUsers, 8000);
+    }
+
+    function updateSimulatedUsers() {
+        const usersEl = document.getElementById('admin-live-users');
+        if (usersEl) {
+            const count = Math.floor(Math.random() * 4) + 2;
+            usersEl.textContent = count;
+        }
+    }
+
+    function openAdminModal() {
+        const modal = document.getElementById('admin-modal');
+        const viewsEl = document.getElementById('admin-pageviews');
+        if (viewsEl) {
+            viewsEl.textContent = localStorage.getItem('ronny_admin_pageviews') || '1';
+        }
+        if (modal) {
+            modal.style.display = 'flex';
+            modal.offsetHeight; // force reflow
+            modal.classList.add('show');
+        }
+    }
+
+    function closeAdminModal() {
+        const modal = document.getElementById('admin-modal');
+        if (modal) {
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
         }
     }
 
